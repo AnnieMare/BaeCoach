@@ -22,5 +22,15 @@ namespace BaeCoach.Controllers
         {
             return View();
         }
+
+        public ActionResult BaeSignUpPage()
+        {
+            return View();
+        }
+
+        public ActionResult CoachSignUpPage()
+        {
+            return View();
+        }
     }
 }

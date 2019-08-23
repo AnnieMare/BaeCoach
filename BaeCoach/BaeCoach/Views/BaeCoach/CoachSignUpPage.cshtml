@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/StyleSheet1.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <title>BaeSignUpPage</title>
+    <title>CoachSignUpPage</title>
 </head>
 <body>
     <center>
@@ -52,8 +52,8 @@
                             <option>Prefer not to say</option>
                         </select>
                         <br />
-                        
-                        <div class="grid-item">
+
+                        <div class="grid-item" required>
                         </div>
                         <br />
                         <div class="grid-item">
@@ -76,14 +76,46 @@
                                 <option>Its Complicated</option>
                             </select>
                         </div>
+                        <br />
+                        <br />
+                        <div class="grid-item">
+                            <lable for="University">University</lable><select class="form-control" id="University" style="width:40%; float:right" required>
+                                <option>Populate from database</option>
+                            </select>
+
+
+
+
+                        </div>
+                        <div class="grid-item">
+                        </div>
+                        <br />
+                        <br />
+                        <div class="grid-item">
+                            <lable for="Graduated">Graduation date:</lable><input class="form-control" type="date" id="Graduated" style="float:right" required />
+                        </div>
+                        <div class="grid-item">
+                        </div>
+                        <br />
+                        <br />
+                        <div class="grid-item">
+                            <lable for="Study">Field of Study:</lable><input type="text" id="Study" class="form-control" required />
+                        </div>
+                        <div class="grid-item">
+                        </div>
+                        <br />
+                        <div class="grid-item">
+                            <p class="alert-info"><strong>Please Note:</strong> We will verify your details and activate your account between 48h and 36h.</p>
+                        </div>
                     </div>
 
                 </div>
                 <div>
-                    <input type="submit" class="btn" id="buttonRight" value="Submit" />
+                    <input type="submit" class="btn" id="buttonRight" value="Submit" required/>
                 </div>
             </div>
         </div>
     </center>
+  
 </body>
 </html>

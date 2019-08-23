@@ -32,5 +32,14 @@ namespace BaeCoach.Controllers
         {
             return View();
         }
+
+        public ActionResult TopicSelect()
+        {
+            return View();
+        }
+        public ActionResult Home()
+        {
+            return View();
+        }
     }
 }

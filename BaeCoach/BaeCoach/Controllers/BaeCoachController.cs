@@ -18,5 +18,9 @@ namespace BaeCoach.Controllers
         {
             return View();
         }
+        public ActionResult DoLogin()
+        {
+            return View();
+        }
     }
 }

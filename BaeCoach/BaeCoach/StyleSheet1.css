@@ -2,9 +2,26 @@
     background-image: url("https://images.pexels.com/photos/988872/pexels-photo-988872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
     text-align:center;
     color: white;
+    margin:0;
+    font-family:Georgia;
    
     
 }
+h2 {
+    color:white;
+}
+
+#box{
+    padding: 50px;
+    align-self:center;
+}
+#btn{
+    background-color: white;
+}
+
+    #btn:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }
 
 .card-body  {
     background-color: rgb(109, 115, 185);
@@ -12,6 +29,8 @@
     padding: 75px;
     height: 400px;
     border-radius:15px;
+    text-align:center;
+    
 }
 
 #CoachBtn {
@@ -38,4 +57,14 @@
     width: 650px !important;
     background-color: #9d93c6;
     font-size: 25px;
+}
+
+    #buttonRight{
+
+        width:20%;
+        float:right;
+
+    }
+.form-control{
+    width:80%;
 }

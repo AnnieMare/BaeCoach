@@ -172,6 +172,9 @@
     <Content Include="Views\BaeCoach\CoachSignUpPage.cshtml" />
     <Content Include="Views\BaeCoach\TopicSelect.cshtml" />
     <Content Include="Views\BaeCoach\Home.cshtml" />
+    <Content Include="Views\BaeCoach\UpdateProfile.cshtml" />
+    <Content Include="Views\BaeCoach\CoachUpdateProfile.cshtml" />
+    <Content Include="Views\BaeCoach\UserFeed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -41,5 +41,18 @@ namespace BaeCoach.Controllers
         {
             return View();
         }
+        public ActionResult UpdateProfile()
+        {
+            return View();
+        }
+        public ActionResult CoachUpdateProfile()
+        {
+            return View();
+        }
+
+        public ActionResult UserFeed()
+        {
+            return View();
+        }
     }
 }

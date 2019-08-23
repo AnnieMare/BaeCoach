@@ -168,6 +168,7 @@
     <Content Include="Views\BaeCoach\Login.cshtml" />
     <Content Include="Views\BaeCoach\DoLogin.cshtml" />
     <Content Include="Views\BaeCoach\BaeSignUpPage.cshtml" />
+    <Content Include="Views\BaeCoach\CoachSignUpPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

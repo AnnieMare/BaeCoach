@@ -150,6 +150,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="StyleSheet1.css" />
+    <Content Include="ApplicationStyle.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -169,6 +170,8 @@
     <Content Include="Views\BaeCoach\DoLogin.cshtml" />
     <Content Include="Views\BaeCoach\BaeSignUpPage.cshtml" />
     <Content Include="Views\BaeCoach\CoachSignUpPage.cshtml" />
+    <Content Include="Views\BaeCoach\TopicSelect.cshtml" />
+    <Content Include="Views\BaeCoach\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

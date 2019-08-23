@@ -52,7 +52,7 @@ lable{
     margin:50px;
     background-color: #9d93c6;
     padding:2%;
-    height:550px;
+    height:680px;
     border-radius: 15px;
     text-align: center;
     width: 40%;     
@@ -91,6 +91,7 @@ lable{
     width: 20%;
     float: right;
     background-color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 .form-control{
     width:80%;

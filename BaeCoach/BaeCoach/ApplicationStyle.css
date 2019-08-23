@@ -15,15 +15,26 @@
     padding:10px;
     
 }
+#UserTopics {
+    width: 80%;
+    height: 550px;
+    background-color: rgb(202, 203, 250);
+    align-self: center;
+    text-align: center;
+    border-radius: 15px;
+    margin: 30px;
+    padding: 10px;
+}
+
 .grid-container {
     display: inline-grid;
-    grid-column-gap: 20px;
-    padding: 10px;
-    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-gap: 50px 100px;
+    grid-template-columns: auto auto auto;
 }
 
 .grid-item {
     text-align: center;
+  
 }
 #content {
     width: 90%;
@@ -33,4 +44,53 @@
     align-self:center;
     padding:10px;
     border-radius:10px;
+}
+#card {
+    height: 150px;
+    width: 250px;
+    background-color: rgb(147,112,219);
+    border-radius: 15px;
+    color: black;
+    font-size: 13px;
+    text-align: center;
+    align-self: center;
+}
+
+    #card:hover {
+        box-shadow: 10px 10px 5px grey;
+    }
+
+
+    #card-header {
+        Background-color: white;
+        border-radius: 15px;
+        color: black;
+        font-size: 15px;
+    }
+
+.dropdown-item a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+    .dropdown:hover .dropdown-content {
+        display: block;
+        float: left;
+        position: absolute;
+    }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
 }

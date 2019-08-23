@@ -1,0 +1,39 @@
+﻿
+$colors: (
+    primary: #fff,
+    secondary: rgb(109, 115, 185)
+);
+@function color($colorName)
+{
+    @return map-get($colors,$colorName);
+}
+
+body {
+    margin:0;
+    background-image: url("https://images.pexels.com/photos/988872/pexels-photo-988872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    color(primary);
+
+    #BeaButton{
+    box-sizing: border-box !important;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+    float: none !important;
+    height: 50px;
+    width: 650px !important;
+    background-color: white;
+    font-size: 25px;
+    }
+
+    #CoachButton{
+        box-sizing: border-box !important;
+        border-style: solid;
+        border-color: white;
+        border-width: 1px;
+        float: none !important;
+        height: 50px;
+        width: 650px !important;
+        background-color: #9d93c6;
+        font-size:25px;
+    }
+}

@@ -54,5 +54,10 @@ namespace BaeCoach.Controllers
         {
             return View();
         }
+
+        public ActionResult CoachFeed()
+        {
+            return View();
+        }
     }
 }

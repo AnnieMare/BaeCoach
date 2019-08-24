@@ -175,6 +175,7 @@
     <Content Include="Views\BaeCoach\UpdateProfile.cshtml" />
     <Content Include="Views\BaeCoach\CoachUpdateProfile.cshtml" />
     <Content Include="Views\BaeCoach\UserFeed.cshtml" />
+    <Content Include="Views\BaeCoach\CoachFeed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -16,14 +16,14 @@
     
 }
 #UserTopics {
-    width: 80%;
+    width: 70%;
     height: 550px;
-    background-color: white;
+    /*background-color: white;*/
     align-self: center;
     text-align: center;
     border-radius: 15px;
-    margin: 30px;
-    padding: 10px;
+    margin:auto;
+    padding: 20px;
 }
 
 .grid-container {
@@ -47,18 +47,20 @@
     border-radius: 10px;
 }
 #card {
-    height: 150px;
+    height: 200px;
     width: 250px;
-    background-color: rgb(98, 135, 163);
+    background-image: linear-gradient(to right, #660066, #6600cc);
     border-radius: 15px;
-    color: black;
+    color: white;
     font-size: 13px;
     text-align: center;
     align-self: center;
+    padding: 10px;
+    margin: 1rem;
 }
 
     #card:hover {
-        box-shadow: 10px 10px 5px grey;
+        box-shadow: 5px 10px 18px #330033;
     }
 
 
@@ -97,11 +99,12 @@
 }
 .grid-container {
     display: grid;
-    grid-gap: 10px 50px;
-    grid-template-columns: 33.3% 33.3% 33.3%;
-    background-color: rgb(214, 214, 194);
+    grid-gap: 10px 30px;
+    grid-template-columns: auto auto auto;
+    /*background-color: rgb(157, 147, 198);*/
     padding: 20px;
     height: 400px;
+    position:center;
 }
 
 .grid-item {  
@@ -125,7 +128,35 @@
     display: grid;
     grid-gap: 10px 50px;
     grid-template-columns: 10% auto 10%;
-    background-color: rgb(214, 171, 255);
+    background-color: rgb(109, 115, 185);
     padding: 20px;
     height: 500px;
+}
+
+#reply {
+    background-color: rgb(109, 115, 185);
+    text-align:center;
+    align-self:center;
+}
+
+@media screen and (max-width: 600px) {
+    [class*="col-"] {
+        width: 100%;
+    }
+
+
+}
+
+@media screen and (min-width: 600px) and (max-width: 900px) {
+    [class*="col-"] {
+        width: 100%;
+    }
+
+
+}
+
+@media screen and (max-width: 900px) {
+    [class*="col-"] {
+        width: 100%;
+    }
 }

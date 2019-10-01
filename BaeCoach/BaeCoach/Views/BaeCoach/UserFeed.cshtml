@@ -12,19 +12,74 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link href="~/ApplicationStyle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <title>UserFeed</title>
 </head>
 <body>
+    <div>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">BaeCoach</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav w-100">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Coaches <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">History</a>
+                    </li>
+                    @*<li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>*@
+                    <li class="nav-item dropdown ml-auto">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                        <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink" style="right:0">
+                            <a class="dropdown-item" href="#">Log Out</a>
+                            <a class="dropdown-item" href="#">Edit Profile</a>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
     <div>
 
         <center><h1>Discussion Title:</h1></center>
         <br />
         <div class="grid-container" id="feedGrid">
-            <div class="grid-item" id="feedButton" style="background-color:transparent; border-color:none; align-self:center; text-align:center" ><button class="arrow" style="background:transparent; border:none"><span class="glyphicon glyphicon-triangle-left  "></span></button></div>
+            <div class="grid-item" id="feedButton" style="background-color:transparent; border-color:none; align-self:center; text-align:center"><button class="arrow" style="background:transparent; border:none"><span class="glyphicon glyphicon-triangle-left  "></span></button></div>
             <div class="grid-item" id="FeedContent"></div>
-            <div class="grid-item" id="feedButton" style="background-color:transparent; border-color:none; align-self:center; text-align:center"><button class="arrow" style="background:transparent; border:none"><span class="glyphicon glyphicon-triangle-right" ></span></button></div>
+            <div class="grid-item" id="feedButton" style="background-color:transparent; border-color:none; align-self:center; text-align:center"><button class="arrow" style="background:transparent; border:none"><span class="glyphicon glyphicon-triangle-right"></span></button></div>
+
 
         </div>
+        <center>
+            <div style="height: 60px;background-color:rgb(109, 115, 185)">
+
+                <button type="button" class="btn btn-default btn-group-lg" id="AddEntry" title="Add an enry to this topic.">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-group-lg" id="Like" title="Like this entry.">
+                    <span class="glyphicon glyphicon-heart"></span>
+                </button>
+                <br />
+
+
+            </div>
+        </center>
+
 
     </div>
 </body>

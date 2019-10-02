@@ -4,6 +4,7 @@
     margin: 0;
     font-family: Georgia;
     background-image: url("https://images.pexels.com/photos/988872/pexels-photo-988872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    text-shadow: 5px 10px 18px #595959;
 }
 h2 {
     color:white;
@@ -13,6 +14,10 @@ h2 {
     margin:5rem;
     margin-top:9rem;
     align-self:center;
+}
+#box1 {
+    margin: 1.5rem;   
+    align-self: center;
 }
 #btn{
     background-color: white;
@@ -32,6 +37,14 @@ h2 {
     border-radius:15px;
     text-align:center;
     
+}
+#LoginBox{
+    background-color: rgb(109, 115, 185);
+    margin: 9rem;
+    padding: 30px;
+    height: 360px;
+    border-radius: 15px;
+    text-align: center;
 }
 
 .grid-container {
@@ -75,8 +88,13 @@ lable{
     background-color: white;
     font-size: 25px;
 }
-
-#BaeBtn {
+    #CoachBtn:hover {
+        box-shadow: 5px 10px 18px #595959;
+    }
+#BaeBtn:hover {
+    box-shadow: 5px 10px 18px #595959;
+}
+    #BaeBtn {
     -webkit-box-sizing: border-box !important;
     box-sizing: border-box !important;
     border-style: solid;
@@ -92,8 +110,8 @@ lable{
 #buttonRight {
     width: 40%;
     float: right;
-    background-color: white;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: transparent;
+   
     margin: 0.5rem;
 }
 .form-control{
@@ -109,8 +127,10 @@ lable{
         border-radius: 0;
         width: 100%;
     }
-    .grid-item{
-
+    #LoginBox {
+        margin: 1rem;
+        margin-top: 8rem;
+        height: 400px;
     }
 
 }
@@ -123,6 +143,11 @@ lable{
         padding: 20px;
         width: 80%;
         
+    }
+    #LoginBox {
+        margin: 1rem;
+        margin-top: 8rem;
+        height: 400px;
     }
 }
 

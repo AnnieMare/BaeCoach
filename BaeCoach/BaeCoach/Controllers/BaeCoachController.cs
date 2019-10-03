@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BaeCoach.Models;
 
 namespace BaeCoach.Controllers
 {
@@ -51,10 +50,9 @@ namespace BaeCoach.Controllers
             return View();
         }
 
-        public ActionResult UserFeed(/*myUser currentUser*/)
+        public ActionResult UserFeed()
         {
-            
-            return View(/*currentUser.Interests*/);
+            return View();
         }
 
         public ActionResult CoachFeed()

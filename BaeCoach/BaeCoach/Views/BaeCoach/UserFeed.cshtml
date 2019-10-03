@@ -58,29 +58,36 @@
 
         <center><h1>Discussion Title:</h1></center>
         <br />
-        <div class="grid-container" id="feedGrid">
-            <div class="grid-item" id="feedButton" style="background-color:transparent; border-color:none; align-self:center; text-align:center"><button class="arrow" style="background:transparent; border:none"><span class="glyphicon glyphicon-triangle-left  "></span></button></div>
-            <div class="grid-item" id="FeedContent"></div>
-            <div class="grid-item" id="feedButton" style="background-color:transparent; border-color:none; align-self:center; text-align:center"><button class="arrow" style="background:transparent; border:none"><span class="glyphicon glyphicon-triangle-right"></span></button></div>
+        <div id="demo" class="carousel slide" data-ride="carousel">
 
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
 
-        </div>
-        <center>
-            <div style="height: 60px;background-color:rgb(109, 115, 185)">
-
-                <button type="button" class="btn btn-default btn-group-lg" id="AddEntry" title="Add an enry to this topic.">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </button>
-                <button type="button" class="btn btn-default btn-group-lg" id="Like" title="Like this entry.">
-                    <span class="glyphicon glyphicon-heart"></span>
-                </button>
-                <br />
-
-
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="la.jpg" alt="Los Angeles" width="1100" height="500">
+                </div>
+                <div class="carousel-item">
+                    <img src="chicago.jpg" alt="Chicago" width="1100" height="500">
+                </div>
+                <div class="carousel-item">
+                    <img src="ny.jpg" alt="New York" width="1100" height="500">
+                </div>
             </div>
-        </center>
 
-
-    </div>
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+        </div>
 </body>
 </html>

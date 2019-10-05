@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BaeCoach.Models;
+using BaeCoach.ViewModels;
+
 
 namespace BaeCoach.Controllers
 {

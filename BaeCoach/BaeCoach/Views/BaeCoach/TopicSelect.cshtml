@@ -14,11 +14,35 @@
     <title>TopicSelect</title>
 </head>
 <body>
+    <div>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="@Url.Action("Home", "BaeCoach")">BaeCoach</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav w-100">
+
+                    <li class="nav-item dropdown ml-auto">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                        <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink" style="right:0">
+                            <a class="dropdown-item" href="@Url.Action("DoLogin", "BaeCoach")">Log Out</a>
+                            <a class="dropdown-item" href="@Url.Action("UpdateProfile", "BaeCoach")">Edit Profile</a>
+
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
     <center>
         <div id="block">
             <h3>What Are you here for?</h3>
             <p>Pick 6 topics</p>
-       
+
             <center>
                 <div id="content">
                     <form>
@@ -114,7 +138,7 @@
                         <input type="submit" value="Submit" class="btn btn-light" id="submit" />
                     </form>
                 </div>
-                
+
 
             </center>
         </div>

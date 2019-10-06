@@ -4,9 +4,9 @@
         keyboard: true,
         interval: 10000,
     })
-})
+});
 
-    $(document).ready(function () {
+$(document).ready(function () {
     var my_posts = $("[rel=tooltip]");
     for (i = 0; i < my_posts.length; i++) {
         the_post = $(my_posts[i]);
@@ -18,4 +18,4 @@
             the_post.css("cursor", "pointer");
         }
     }
-})
+});

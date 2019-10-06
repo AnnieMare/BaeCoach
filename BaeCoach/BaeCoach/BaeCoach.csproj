@@ -274,6 +274,7 @@
     <Content Include="Views\BaeCoach\UserFeed.cshtml" />
     <Content Include="Views\BaeCoach\CoachFeed.cshtml" />
     <Content Include="Views\BaeCoach\CoachReply.cshtml" />
+    <Content Include="Views\BaeCoach\UserEntry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

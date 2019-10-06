@@ -13,6 +13,7 @@ namespace BaeCoach.ViewModels
         public Coach currentCoach { get; set; }
         public List<Post> listPosts { get; set; }
         public Response coachResponse { get; set; }
+        public Topic currentTopic { get; set; }
 
         public CoachFeed populateCoachFeed(int PostID, Coach currentCoach )
         {

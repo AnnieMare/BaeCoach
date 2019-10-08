@@ -1,4 +1,5 @@
-﻿
+﻿@model List<BaeCoach.Models.Topic>
+
 @{
     Layout = null;
 }
@@ -77,78 +78,21 @@
         <div class="container">
             <div class="blog_content">
                 <div class="owl-carousel owl-theme">
-                    <div class="blog_item">
-                        <div class="blog_image">
-                            <img class="img-fluid" src="https://www.addictioncenter.com/app/uploads/2018/09/AdobeStock_175229643.jpeg" alt="images not found">
+                    @foreach (var topic in Model)
+                    {
+                        <div class="blog_item">
+                            <div class="blog_image">
+                                <img class="img-fluid" src="@topic.ImageLinks" alt="images not found">
 
-                        </div>
-                        <div class="blog_details">
-                            <div class="blog_title">
-                                <h5>Alcholism</h5>
                             </div>
-                            <a href="#">Read posts<i class="icofont-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog_item">
-                        <div class="blog_image">
-                            <img class="img-fluid" src="https://www.helpguide.org/wp-content/uploads/2018/11/abuse-500.jpg " alt="images not found">
-
-                        </div>
-                        <div class="blog_details">
-                            <div class="blog_title">
-                                <h5>Abuse</h5>
+                            <div class="blog_details">
+                                <div class="blog_title">
+                                    <h5>@topic.TopicName</h5>
+                                </div>
+                                <a href="#"><i class="icofont-long-arrow-right">Read posts</i></a>
                             </div>
-                            <a href="#">Read posts<i class="icofont-long-arrow-right"></i></a>
                         </div>
-                    </div>
-                    <div class="blog_item">
-                        <div class="blog_image">
-                            <img class="img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2uK2DHWh4ml-mz1Buq-FEZU6Uev8_yNVkeTSbxzXSATaBY_KkfQ" alt="images not found">
-
-                        </div>
-                        <div class="blog_details">
-                            <div class="blog_title">
-                                <h5>Bad Communication</h5>
-                            </div>
-                            <a href="#">Read Posts<i class="icofont-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog_item">
-                        <div class="blog_image">
-                            <img class="img-fluid" src="https://markmanson.net/wp-content/uploads/2015/04/cheating.jpg" alt="images not found">
-
-                        </div>
-                        <div class="blog_details">
-                            <div class="blog_title">
-                                <h5>Cheating</h5>
-                            </div>
-                            <a href="#">Read posts<i class="icofont-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog_item">
-                        <div class="blog_image">
-                            <img class="img-fluid" src="https://www.nationaldebtrelief.com/wp-content/uploads/2013/07/How-To-Use-Financial-Management-As-A-Debt-Solution.jpeg" alt="images not found">
-
-                        </div>
-                        <div class="blog_details">
-                            <div class="blog_title">
-                                <h5>Finanacial Problems</h5>
-                            </div>
-                            <a href="#">Read posts<i class="icofont-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog_item">
-                        <div class="blog_image">
-                            <img class="img-fluid" src="https://nationalpostcom.files.wordpress.com/2019/01/addict.jpg?quality=80&strip=all&w=780" alt="images not found">
-
-                        </div>
-                        <div class="blog_details">
-                            <div class="blog_title">
-                                <h5>Addiction</h5>
-                            </div>
-                            <a href="#">Read posts<i class="icofont-long-arrow-right"></i></a>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>

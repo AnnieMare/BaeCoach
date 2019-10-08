@@ -9,6 +9,7 @@ namespace BaeCoach.Controllers
 {
     public class BaeCoachController : Controller
     {
+     
         // GET: BaeCoach
         public ActionResult Index()
         {
@@ -38,8 +39,9 @@ namespace BaeCoach.Controllers
         {
             return View();
         }
-        public ActionResult Home()
+        public ActionResult HomeScreen()
         {
+           
             return View();
         }
         public ActionResult UpdateProfile()

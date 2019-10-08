@@ -207,6 +207,7 @@
     <Compile Include="ViewModels\userFeed.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Charl%27sStyles.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

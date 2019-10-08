@@ -36,131 +36,16 @@
     <title>Home</title>
 </head>
 <body>
-    <div>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">BaeCoach</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav w-100">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Coaches <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">History</a>
-                    </li>
-                    @*<li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
-                        </li>*@
-                    <li class="nav-item dropdown ml-auto">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </a>
-                        <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink" style="right:0">
-                            <a class="dropdown-item" href="#">Log Out</a>
-                            <a class="dropdown-item" href="#">Edit Profile</a>
+   
+        <div>
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="@Url.Action("Home", "BaeCoach")">BaeCoach</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav w-100">
 
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <br /><br /><br /><br />
-    <div style="text-align:center; font-family: Georgia;">
-        <br />
-        <h1>Welcome to BaeCoach!</h1>
-        <h4>Select a topic to start.</h4>
-    </div>
-    <section class="blog_section">
-        <div class="container">
-            <div class="blog_content">
-                <div class="owl-carousel owl-theme">
-                    <div class="blog_item">
-                        <div class="blog_image">
-                            <img class="img-fluid" src="https://www.addictioncenter.com/app/uploads/2018/09/AdobeStock_175229643.jpeg" alt="images not found">
-
-                        </div>
-                        <div class="blog_details">
-                            <div class="blog_title">
-                                <h5>Alcholism</h5>
-                            </div>
-                            <a href="#">Read posts<i class="icofont-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog_item">
-                        <div class="blog_image">
-                            <img class="img-fluid" src="https://www.helpguide.org/wp-content/uploads/2018/11/abuse-500.jpg " alt="images not found">
-
-                        </div>
-                        <div class="blog_details">
-                            <div class="blog_title">
-                                <h5>Abuse</h5>
-                            </div>
-                            <a href="#">Read posts<i class="icofont-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog_item">
-                        <div class="blog_image">
-                            <img class="img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2uK2DHWh4ml-mz1Buq-FEZU6Uev8_yNVkeTSbxzXSATaBY_KkfQ" alt="images not found">
-
-                        </div>
-                        <div class="blog_details">
-                            <div class="blog_title">
-                                <h5>Bad Communication</h5>
-                            </div>
-                            <a href="#">Read Posts<i class="icofont-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog_item">
-                        <div class="blog_image">
-                            <img class="img-fluid" src="https://markmanson.net/wp-content/uploads/2015/04/cheating.jpg" alt="images not found">
-
-                        </div>
-                        <div class="blog_details">
-                            <div class="blog_title">
-                                <h5>Cheating</h5>
-                            </div>
-                            <a href="#">Read posts<i class="icofont-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog_item">
-                        <div class="blog_image">
-                            <img class="img-fluid" src="https://www.nationaldebtrelief.com/wp-content/uploads/2013/07/How-To-Use-Financial-Management-As-A-Debt-Solution.jpeg" alt="images not found">
-
-                        </div>
-                        <div class="blog_details">
-                            <div class="blog_title">
-                                <h5>Finanacial Problems</h5>
-                            </div>
-                            <a href="#">Read posts<i class="icofont-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog_item">
-                        <div class="blog_image">
-                            <img class="img-fluid" src="https://nationalpostcom.files.wordpress.com/2019/01/addict.jpg?quality=80&strip=all&w=780" alt="images not found">
-
-                        </div>
-                        <div class="blog_details">
-                            <div class="blog_title">
-                                <h5>Addiction</h5>
-                            </div>
-                            <a href="#">Read posts<i class="icofont-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Jquery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <!-- bootstrap -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <!-- carousel -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
 </body>
 </html>
 <script>

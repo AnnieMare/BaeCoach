@@ -14,6 +14,10 @@ namespace BaeCoach.Models
     
     public partial class Coach
     {
+        internal string Email;
+        internal DateTime GraduationDate;
+        internal string StudyField;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Coach()
         {

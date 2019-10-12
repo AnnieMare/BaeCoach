@@ -6,7 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using BaeCoach.Models;
-using BaeCoach.ViewModel;
+
 
 namespace BaeCoach.Controllers
 {
@@ -183,6 +183,14 @@ namespace BaeCoach.Controllers
             return View();
         }
 
+        public ActionResult CoachReply()
+        {
+            return View();
+        }
+        public ActionResult UserEntry()
+        {
+            return View();
+        }
         public ActionResult CoachReply()
         {
             return View();

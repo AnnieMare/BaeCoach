@@ -15,9 +15,9 @@ namespace BaeCoach.Models
     public partial class Interest
     {
         public int InterestID { get; set; }
-        public Nullable<int> TopicID { get; set; }
-        public Nullable<int> UserID { get; set; }
-    
+        public List<int> TopicID { get; set; }
+        public List<int> UserID { get; set; }
+
         public virtual Topic Topic { get; set; }
         public virtual myUser myUser { get; set; }
     }

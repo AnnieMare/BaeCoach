@@ -39,28 +39,21 @@
 <body>
     <div>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">BaeCoach</a>
+            <a class="navbar-brand" href="@Url.Action("Home", "BaeCoach")">BaeCoach</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav w-100">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Coaches <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">History</a>
-                    </li>
-                    @*<li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
-                        </li>*@
+
                     <li class="nav-item dropdown ml-auto">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="glyphicon glyphicon-user"></span>
                         </a>
                         <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink" style="right:0">
-                            <a class="dropdown-item" href="#">Log Out</a>
-                            <a class="dropdown-item" href="#">Edit Profile</a>
+                            <a class="dropdown-item" href="@Url.Action("DoLogin", "BaeCoach")">Log Out</a>
+                            <a class="dropdown-item" href="@Url.Action("UpdateProfile", "BaeCoach")">Edit Profile</a>
+
 
                         </div>
                     </li>
@@ -105,6 +98,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <!-- carousel -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+
 </body>
 </html>
 <script>
@@ -127,5 +121,6 @@
                 items: 3
             }
         }
-    })
+    });
+    
 </script>

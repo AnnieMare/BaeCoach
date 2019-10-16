@@ -11,9 +11,10 @@ using BaeCoach.Models;
 namespace BaeCoach.Controllers
 {
     public class BaeCoachController : Controller
-    {
-        BaeCoachEntities1 db = new BaeCoachEntities1();//connection string
-
+ {
+        
+        public static List<Topic> topicSelect = new List<Topic>();
+        BaeCoachEntities1 db = new BaeCoachEntities1();//connection st
 
         // GET: BaeCoach
         public ActionResult Index()
@@ -157,11 +158,33 @@ namespace BaeCoach.Controllers
 
         public ActionResult TopicSelect()
         {
-            return View();
+            topicSelect = db.Topics.ToList();
+            return View(topicSelect);
         }
-        public ActionResult Home()
+        public ActionResult Home(string Selected)
         {
-            return View();
+
+            string[] userSelectedTopic = Selected.Split(',');
+            List<int> userTopic = new List<int>();
+            
+            
+            for (int i = 0; i < userSelectedTopic.Count(); i++)
+            {
+                userTopic.Add(Convert.ToInt32(userSelectedTopic[i]));
+            }
+
+            Interest userHomeTopic = new Interest();
+            userHomeTopic.InterestID = Convert.ToInt32(userTopic);
+            db.SaveChanges();
+
+
+
+
+
+
+            topicSelect = db.Topics.ToList();
+            return View(topicSelect);
+
         }
         public ActionResult UpdateProfile()
         {
@@ -188,10 +211,6 @@ namespace BaeCoach.Controllers
             return View();
         }
         public ActionResult UserEntry()
-        {
-            return View();
-        }
-        public ActionResult CoachReply()
         {
             return View();
         }

@@ -1,0 +1,114 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/StyleSheet1.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>BaeUpdateProfile</title>
+</head>
+<body>
+    <div>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="@Url.Action("Home", "BaeCoach")">BaeCoach</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav w-100">
+
+                    <li class="nav-item dropdown ml-auto">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                        <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink" style="right:0">
+                            <a class="dropdown-item" href="@Url.Action("DoLogin", "BaeCoach")">Log Out</a>
+                            <a class="dropdown-item" href="@Url.Action("UpdateProfile", "BaeCoach")">Edit Profile</a>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <center>
+        <div id="element">
+            <div class="card-body1">
+                <h3>Update Profile</h3>
+                <p>Please provide the necessary details below. </p>
+
+
+                <div class="grid-container">
+                    <div class="grid-item">
+
+                        <lable>Name:</lable><input type="text" class="form-control" id="Name" required />
+                        <lable>Surname:</lable><input type="text" class="form-control" id="Surname" required />
+                        <lable>Username:</lable><input type="text" class="form-control" id="Username" required />
+                        <lable>Email:</lable><input type="email" class="form-control" id="Email" required />
+                        <lable>Password:</lable><input type="password" class="form-control" id="Password" required />
+
+                        <lable>Country:</lable><select class="form-control" id="Country" required>
+                            <option>Populate from database</option>
+                        </select>
+
+                        <lable>Provice:</lable><select class="form-control" id="Provice" required>
+                            <option>Populate from database</option>
+                        </select>
+
+                        <lable>City:</lable><select class="form-control" id="City" required>
+                            <option>Populate from database</option>
+                        </select>
+                    </div>
+
+                    <div class="grid-item">
+                        <lable for="Title">Title:</lable><select class="form-control" id="Title" style="width:40%; float:right" required>
+                            <option>Mr.</option>
+                            <option>Mrs.</option>
+                            <option>Miss.</option>
+                            <option>Dr.</option>
+                            <option>Mx.</option>
+                            <option>Prefer not to say</option>
+                        </select>
+                        <br />
+
+                        <div class="grid-item">
+                        </div>
+                        <br />
+                        <div class="grid-item">
+                            <lable for="Gender">Gender:</lable><select class="form-control" id="Gender" style="width:40%; float:right " required>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                                <option>Prefer not to say</option>
+                            </select>
+                            <br />
+                        </div>
+                        <br />
+                        <div class="grid-item">
+                        </div>
+                        <div class="grid-item">
+                            <lable for="RelationshipStatus">Relationship Status:</lable><select class="form-control" id="RelationshipStatus" style="width:40%; float:right" required>
+                                <option>Married</option>
+                                <option>In A Relationship</option>
+                                <option>Single</option>
+                                <option>Its Complicated</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div>
+                    <input type="submit" class="btn" id="buttonRight" value="Submit" />
+                </div>
+            </div>
+        </div>
+    </center>
+</body>
+</html>
+

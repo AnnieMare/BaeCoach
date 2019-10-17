@@ -80,6 +80,7 @@
           <Property Name="PostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PostText" Type="varchar(max)" Nullable="false" />
           <Property Name="FK_UserID" Type="int" />
+          <Property Name="TopicName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Profession">
           <Key>
@@ -658,6 +659,7 @@
           <Property Name="FK_UserID" Type="Int32" />
           <NavigationProperty Name="myUser" Relationship="Self.FK__Post__FK_UserID__5DCAEF64" FromRole="Post" ToRole="myUser" />
           <NavigationProperty Name="Responses" Relationship="Self.FK__Response__FK_Pos__628FA481" FromRole="Post" ToRole="Response" />
+          <Property Name="TopicName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Profession">
           <Key>
@@ -1233,6 +1235,7 @@
           <EntitySetMapping Name="Posts">
             <EntityTypeMapping TypeName="BaeCoachModel.Post">
               <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="TopicName" ColumnName="TopicName" />
                 <ScalarProperty Name="PostID" ColumnName="PostID" />
                 <ScalarProperty Name="PostText" ColumnName="PostText" />
                 <ScalarProperty Name="FK_UserID" ColumnName="FK_UserID" />

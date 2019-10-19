@@ -17,7 +17,6 @@ namespace BaeCoach.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public myUser()
         {
-            this.Interests = new HashSet<Interest>();
             this.Posts = new HashSet<Post>();
         }
     
@@ -35,8 +34,6 @@ namespace BaeCoach.Models
         public virtual Active Active { get; set; }
         public virtual City City { get; set; }
         public virtual Gender Gender { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Interest> Interests { get; set; }
         public virtual RelationshipStatu RelationshipStatu { get; set; }
         public virtual Title Title { get; set; }
         public virtual userLogin userLogin { get; set; }

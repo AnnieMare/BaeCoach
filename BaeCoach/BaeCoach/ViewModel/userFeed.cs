@@ -18,10 +18,11 @@ namespace BaeCoach.ViewModels
         public myUser currentUser { get; set; }
         public Post aPost { get; set; }
 
-        public userFeed PopulateUserFeed(int TopicID, myUser currentUser)
+        public userFeed PopulateUserFeed(int TopicID/*, myUser currentUser*/)
         {
+           
             userFeed uf = new userFeed();
-            uf.currentTopic = db.Topics.Where(t => t.TopicID == TopicID).FirstOrDefault();
+            uf.currentTopic = db.Topics.Where(t => t.TopicID == 1).FirstOrDefault();
             //uf.aPost = db.Interests.Where(o => o.TopicID == TopicID).Select(db.Posts.Where(o => o.PostID == aPost.PostID).FirstOrDefault();
             //var postList = db.Posts.Where(o => o.myUser.Interests
             //.Any(p => p.Topic.TopicID == TopicID));

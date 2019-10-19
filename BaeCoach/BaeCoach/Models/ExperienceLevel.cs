@@ -12,18 +12,18 @@ namespace BaeCoach.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Verification
+    public partial class ExperienceLevel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Verification()
+        public ExperienceLevel()
         {
-            this.Professions = new HashSet<Profession>();
+            this.Coaches = new HashSet<Coach>();
         }
     
-        public int VerificationID { get; set; }
-        public string VerificationStatus { get; set; }
+        public int ExperienceID { get; set; }
+        public string ExperienceDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Profession> Professions { get; set; }
+        public virtual ICollection<Coach> Coaches { get; set; }
     }
 }

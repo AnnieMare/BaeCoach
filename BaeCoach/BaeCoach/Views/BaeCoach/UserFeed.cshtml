@@ -1,4 +1,4 @@
-﻿@model BaeCoach.ViewModels.userFeed
+@model BaeCoach.ViewModel
 
     @{
         Layout = null;
@@ -59,10 +59,13 @@
                     @foreach (var Post in Model.prevPosts)
                     {
                         <div class="carousel-item active">
-                            <img id="TopicImages" src="@Model.currentTopic.ImageLinks" alt="image" />
-                            <div class="carousel-caption justify-content-center align-items-center ">
+                            <img id="TopicImages" src="" alt="image" />
+                            <div class="carousel-caption justify-content-center align-items-center "
+                                <h1 id="carousel-text">@Model.currentTopic.TopicName</h1>
+                                <h3 id="carousel-text">@Model.aPost.PostText</h3>
                                 <h1 id="carousel-text">@Model.currentTopic.TopicName</h1>
                                 <h3 id="carousel-text">@Model.prevPosts.Select(x=> x.PostText)</h3>
+
                             </div>
                         </div>
                     }

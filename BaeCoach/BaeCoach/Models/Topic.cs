@@ -17,7 +17,6 @@ namespace BaeCoach.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Topic()
         {
-            this.Interests = new HashSet<Interest>();
             this.Professions = new HashSet<Profession>();
         }
     
@@ -25,8 +24,6 @@ namespace BaeCoach.Models
         public string TopicName { get; set; }
         public string ImageLinks { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Interest> Interests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Profession> Professions { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿@*@model BaeCoach.ViewModel*@
+@model BaeCoach.ViewModel
 
     @{
         Layout = null;
@@ -56,22 +56,26 @@
             <div class="carousel slide" id="mySlider" data-ride="carousel">
 
                 <div class="carousel-inner">
-                    @*@foreach (var Post in Model.prevPosts)
-                    {*@
+                    @foreach (var Post in Model.prevPosts)
+                    {
                         <div class="carousel-item active">
                             <img id="TopicImages" src="" alt="image" />
-                            <div class="carousel-caption justify-content-center align-items-center ">
-                                <h1 id="carousel-text">@*@Model.currentTopic.TopicName*@</h1>
-                                <h3 id="carousel-text">@*@Model.aPost.PostText*@</h3>
+                            <div class="carousel-caption justify-content-center align-items-center "
+                                <h1 id="carousel-text">@Model.currentTopic.TopicName</h1>
+                                <h3 id="carousel-text">@Model.aPost.PostText</h3>
+                                <h1 id="carousel-text">@Model.currentTopic.TopicName</h1>
+                                <h3 id="carousel-text">@Model.prevPosts.Select(x=> x.PostText)</h3>
+
                             </div>
                         </div>
-                    @*}*@
+                    }
                     <a class="left carousel-control" href="#mySlider" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
 
                     <a class="right carousel-control" href="#mySlider" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 
                 </div>
             </div>
+        
 
 </body>
 </html>

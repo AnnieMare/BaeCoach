@@ -15,11 +15,11 @@ namespace BaeCoach.ViewModels
         public Response coachResponse { get; set; }
         public Topic currentTopic { get; set; }
 
-        public CoachFeed populateCoachFeed(int PostID, Coach currentCoach )
+        public CoachFeed populateCoachFeed(int PostID, Coach currentCoach)
         {
             CoachFeed cf = new CoachFeed();
-            cf.currentCoach = currentCoach;
-            //cf.listPosts = db.Posts.Where()
+            listPosts = db.Posts.Where(o => o.TopicName == currentTopic.TopicName).ToList();
+            //string PostText = listPosts.Select(x => x.PostText).FirstOrDefault();
             return cf;
 
         }

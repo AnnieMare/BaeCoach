@@ -79,10 +79,12 @@
 
                             </div>
                             <div class="blog_details">
-                                <div class="blog_title">
-                                    <h5>@topic.TopicName</h5>
-                                </div>
-                                <a href="#"><i class="icofont-long-arrow-right">Read posts</i></a>
+                                <center>
+                                    <div class="blog_title">
+                                        <h5>@topic.TopicName</h5>
+                                    </div>
+                                    <a href="@Url.Action("Feed","BaeCoach", FormMethod.Post)"><input id="read" type="submit" value="Read Post" class="btn btn-light" style="background-color:  #a03ac4; color:white" /></a>
+                                </center>
                             </div>
                         </div>
                     }

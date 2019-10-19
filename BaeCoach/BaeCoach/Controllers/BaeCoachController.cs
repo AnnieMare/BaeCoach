@@ -11,10 +11,14 @@ using BaeCoach.Models;
 namespace BaeCoach.Controllers
 {
     public class BaeCoachController : Controller
- {
-        
+    {
+        //List for displaying all topics on topic List
         public static List<Topic> topicSelect = new List<Topic>();
+        //list to display selected topic
+        public static List<Topic> topicSelected = new List<Topic>();
         BaeCoachEntities1 db = new BaeCoachEntities1();//connection st
+        public static string currentUser = "";
+
 
         // GET: BaeCoach
         public ActionResult Index()
@@ -57,7 +61,6 @@ namespace BaeCoach.Controllers
 
             user.Name = Name;
             user.Surname = Surname;
-            user.Email = Email;
             user.Username = UserName;
             ulogin.UserPassword = ComputeSha256Hash(ulogin.UserPassword);
             country.Name = Country.ToString();
@@ -128,7 +131,6 @@ namespace BaeCoach.Controllers
 
             coach.Name = Name;
             coach.Surname = Surname;
-            coach.Email = Email;
             coach.Username = UserName;
             ulogin.UserPassword = ComputeSha256Hash(ulogin.UserPassword);
             country.Name = Country.ToString();
@@ -158,32 +160,28 @@ namespace BaeCoach.Controllers
 
         public ActionResult TopicSelect()
         {
+            //Get all topics from database and add to list to pass to the view
             topicSelect = db.Topics.ToList();
+
             return View(topicSelect);
         }
         public ActionResult Home(string Selected)
         {
-
-            string[] userSelectedTopic = Selected.Split(',');
-            List<int> userTopic = new List<int>();
-            
-            
-            for (int i = 0; i < userSelectedTopic.Count(); i++)
+            //If selected not null add selected topics to list
+            if (Selected != null)
             {
-                userTopic.Add(Convert.ToInt32(userSelectedTopic[i]));
+                //add selected ids to array that was passed from the view
+                string[] userSelectedTopic = Selected.Split(',');
+
+                //loop to add all selected to new list to pass through to the homescreen view
+                for (int i = 0; i < userSelectedTopic.Count(); i++)
+                {
+                    int topic = Convert.ToInt32(userSelectedTopic[i]);
+                    topicSelected.Add(db.Topics.Where(z => z.TopicID == topic).FirstOrDefault());
+                }
             }
 
-            Interest userHomeTopic = new Interest();
-            userHomeTopic.InterestID = Convert.ToInt32(userTopic);
-            db.SaveChanges();
-
-
-
-
-
-
-            topicSelect = db.Topics.ToList();
-            return View(topicSelect);
+            return View(topicSelected);
 
         }
         public ActionResult UpdateProfile()
@@ -195,10 +193,10 @@ namespace BaeCoach.Controllers
             return View();
         }
 
-        public ActionResult UserFeed(/*myUser currentUser*/)
+        public ActionResult UserFeed()
         {
 
-            return View(/*currentUser.Interests*/);
+            return View();
         }
 
         public ActionResult CoachFeed()
@@ -213,6 +211,18 @@ namespace BaeCoach.Controllers
         public ActionResult UserEntry()
         {
             return View();
+        }
+        public ActionResult Feed()
+        {
+            //redirect user to the right view
+            if (currentUser == "Bae")
+            {
+                return RedirectToAction("UserFeed", "BaeCoach");
+            }
+            else
+            {
+                return RedirectToAction("CoachFeed", "BaeCoach");
+            }
         }
     }
 }

@@ -730,7 +730,6 @@
           </Key>
           <Property Name="TopicID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TopicName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Interests" Relationship="Self.FK__Interest__TopicI__778AC167" FromRole="Topics" ToRole="Interest" />
           <NavigationProperty Name="Professions" Relationship="Self.FK__Professio__Topic__68487DD7" FromRole="Topics" ToRole="Profession" />
           <Property Name="ImageLinks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>

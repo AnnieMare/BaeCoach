@@ -33,6 +33,8 @@
           <Property Name="FK_ActiveID" Type="int" />
           <Property Name="FK_CityID" Type="int" />
           <Property Name="LoginID" Type="int" />
+          <Property Name="CoachExperience" Type="int" />
+          <Property Name="University" Type="int" />
         </EntityType>
         <EntityType Name="Countries">
           <Key>
@@ -49,14 +51,6 @@
           </Key>
           <Property Name="GenderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GenderDescription" Type="varchar" MaxLength="30" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Interest">
-          <Key>
-            <PropertyRef Name="InterestID" />
-          </Key>
-          <Property Name="InterestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TopicID" Type="int" />
-          <Property Name="UserID" Type="int" />
         </EntityType>
         <EntityType Name="myUser">
           <Key>
@@ -80,16 +74,8 @@
           <Property Name="PostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PostText" Type="varchar(max)" Nullable="false" />
           <Property Name="FK_UserID" Type="int" />
-        </EntityType>
-        <EntityType Name="Profession">
-          <Key>
-            <PropertyRef Name="ProfessionID" />
-          </Key>
-          <Property Name="ProfessionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UniversityID" Type="int" />
-          <Property Name="CoachID" Type="int" />
-          <Property Name="TopicID" Type="int" />
-          <Property Name="VerificationID" Type="int" />
+          <Property Name="TopicName" Type="varchar" MaxLength="50" />
+          <Property Name="Topic" Type="int" />
         </EntityType>
         <EntityType Name="Regions">
           <Key>
@@ -115,16 +101,7 @@
           <Property Name="FK_CoachID" Type="int" />
           <Property Name="FK_ResponseID" Type="int" />
           <Property Name="FK_PostID" Type="int" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
+          <Property Name="Topic" Type="int" />
         </EntityType>
         <EntityType Name="Title">
           <Key>
@@ -157,14 +134,7 @@
           <Property Name="UserPassword" Type="varchar" MaxLength="50" />
           <Property Name="LoginType" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="Verification">
-          <Key>
-            <PropertyRef Name="VerificationID" />
-          </Key>
-          <Property Name="VerificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="VerificationStatus" Type="varchar" MaxLength="10" Nullable="false" />
-        </EntityType>
-        <Association Name="FK__Coach__FK_Active__534D60F1">
+        <Association Name="FK__Coach__FK_Active__2D27B809">
           <End Role="Active" Type="Self.Active" Multiplicity="0..1" />
           <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
           <ReferentialConstraint>
@@ -176,7 +146,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Coach__FK_CityID__5441852A">
+        <Association Name="FK__Coach__FK_CityID__2E1BDC42">
           <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
           <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
           <ReferentialConstraint>
@@ -188,7 +158,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Coach__FK_Gender__52593CB8">
+        <Association Name="FK__Coach__FK_Gender__2F10007B">
           <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
           <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
           <ReferentialConstraint>
@@ -200,7 +170,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Coach__FK_TitleI__5165187F">
+        <Association Name="FK__Coach__FK_TitleI__300424B4">
           <End Role="Title" Type="Self.Title" Multiplicity="0..1" />
           <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
           <ReferentialConstraint>
@@ -212,7 +182,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Coach__LoginID__74AE54BC">
+        <Association Name="FK__Coach__LoginID__30F848ED">
           <End Role="userLogin" Type="Self.userLogin" Multiplicity="0..1" />
           <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
           <ReferentialConstraint>
@@ -224,31 +194,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Interest__TopicI__778AC167">
-          <End Role="Topics" Type="Self.Topics" Multiplicity="0..1" />
-          <End Role="Interest" Type="Self.Interest" Multiplicity="*" />
+        <Association Name="FK__Coach__Universit__31EC6D26">
+          <End Role="University" Type="Self.University" Multiplicity="0..1" />
+          <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Topics">
-              <PropertyRef Name="TopicID" />
+            <Principal Role="University">
+              <PropertyRef Name="UniversityID" />
             </Principal>
-            <Dependent Role="Interest">
-              <PropertyRef Name="TopicID" />
+            <Dependent Role="Coach">
+              <PropertyRef Name="University" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Interest__UserID__787EE5A0">
-          <End Role="myUser" Type="Self.myUser" Multiplicity="0..1" />
-          <End Role="Interest" Type="Self.Interest" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="myUser">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="Interest">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__myUser__FK_Activ__59FA5E80">
+        <Association Name="FK__myUser__FK_Activ__32E0915F">
           <End Role="Active" Type="Self.Active" Multiplicity="0..1" />
           <End Role="myUser" Type="Self.myUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -260,7 +218,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__myUser__FK_CityI__5AEE82B9">
+        <Association Name="FK__myUser__FK_CityI__33D4B598">
           <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
           <End Role="myUser" Type="Self.myUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -272,7 +230,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__myUser__FK_Gende__5812160E">
+        <Association Name="FK__myUser__FK_Gende__34C8D9D1">
           <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
           <End Role="myUser" Type="Self.myUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -284,7 +242,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__myUser__FK_Relat__59063A47">
+        <Association Name="FK__myUser__FK_Relat__35BCFE0A">
           <End Role="RelationshipStatus" Type="Self.RelationshipStatus" Multiplicity="0..1" />
           <End Role="myUser" Type="Self.myUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -296,7 +254,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__myUser__FK_Title__571DF1D5">
+        <Association Name="FK__myUser__FK_Title__36B12243">
           <End Role="Title" Type="Self.Title" Multiplicity="0..1" />
           <End Role="myUser" Type="Self.myUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -308,7 +266,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__myUser__LoginID__73BA3083">
+        <Association Name="FK__myUser__LoginID__37A5467C">
           <End Role="userLogin" Type="Self.userLogin" Multiplicity="0..1" />
           <End Role="myUser" Type="Self.myUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -320,7 +278,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Post__FK_UserID__5DCAEF64">
+        <Association Name="FK__Post__FK_UserID__38996AB5">
           <End Role="myUser" Type="Self.myUser" Multiplicity="0..1" />
           <End Role="Post" Type="Self.Post" Multiplicity="*" />
           <ReferentialConstraint>
@@ -332,55 +290,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Professio__Coach__6754599E">
-          <End Role="Coach" Type="Self.Coach" Multiplicity="0..1" />
-          <End Role="Profession" Type="Self.Profession" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Coach">
-              <PropertyRef Name="CoachID" />
-            </Principal>
-            <Dependent Role="Profession">
-              <PropertyRef Name="CoachID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Professio__Topic__68487DD7">
+        <Association Name="FK__Post__Topic__398D8EEE">
           <End Role="Topics" Type="Self.Topics" Multiplicity="0..1" />
-          <End Role="Profession" Type="Self.Profession" Multiplicity="*" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Topics">
               <PropertyRef Name="TopicID" />
             </Principal>
-            <Dependent Role="Profession">
-              <PropertyRef Name="TopicID" />
+            <Dependent Role="Post">
+              <PropertyRef Name="Topic" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Professio__Unive__66603565">
-          <End Role="University" Type="Self.University" Multiplicity="0..1" />
-          <End Role="Profession" Type="Self.Profession" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="University">
-              <PropertyRef Name="UniversityID" />
-            </Principal>
-            <Dependent Role="Profession">
-              <PropertyRef Name="UniversityID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Professio__Verif__693CA210">
-          <End Role="Verification" Type="Self.Verification" Multiplicity="0..1" />
-          <End Role="Profession" Type="Self.Profession" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Verification">
-              <PropertyRef Name="VerificationID" />
-            </Principal>
-            <Dependent Role="Profession">
-              <PropertyRef Name="VerificationID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Response__FK_Coa__60A75C0F">
+        <Association Name="FK__Response__FK_Coa__3B75D760">
           <End Role="Coach" Type="Self.Coach" Multiplicity="0..1" />
           <End Role="Response" Type="Self.Response" Multiplicity="*" />
           <ReferentialConstraint>
@@ -392,7 +314,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Response__FK_Pos__628FA481">
+        <Association Name="FK__Response__FK_Pos__3C69FB99">
           <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
           <End Role="Response" Type="Self.Response" Multiplicity="*" />
           <ReferentialConstraint>
@@ -404,7 +326,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Response__FK_Res__619B8048">
+        <Association Name="FK__Response__FK_Res__3D5E1FD2">
           <End Role="Response" Type="Self.Response" Multiplicity="0..1" />
           <End Role="Response1" Type="Self.Response" Multiplicity="*" />
           <ReferentialConstraint>
@@ -413,6 +335,18 @@
             </Principal>
             <Dependent Role="Response1">
               <PropertyRef Name="FK_ResponseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Response__Topic__3E52440B">
+          <End Role="Topics" Type="Self.Topics" Multiplicity="0..1" />
+          <End Role="Response" Type="Self.Response" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="TopicID" />
+            </Principal>
+            <Dependent Role="Response">
+              <PropertyRef Name="Topic" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -446,102 +380,86 @@
           <EntitySet Name="Coach" EntityType="Self.Coach" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Interest" EntityType="Self.Interest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="myUser" EntityType="Self.myUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Profession" EntityType="Self.Profession" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Regions" EntityType="Self.Regions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RelationshipStatus" EntityType="Self.RelationshipStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Response" EntityType="Self.Response" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Topics" EntityType="Self.Topics" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="University" EntityType="Self.University" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="userLogin" EntityType="Self.userLogin" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Verification" EntityType="Self.Verification" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Coach__FK_Active__534D60F1" Association="Self.FK__Coach__FK_Active__534D60F1">
+          <AssociationSet Name="FK__Coach__FK_Active__2D27B809" Association="Self.FK__Coach__FK_Active__2D27B809">
             <End Role="Active" EntitySet="Active" />
             <End Role="Coach" EntitySet="Coach" />
           </AssociationSet>
-          <AssociationSet Name="FK__Coach__FK_CityID__5441852A" Association="Self.FK__Coach__FK_CityID__5441852A">
+          <AssociationSet Name="FK__Coach__FK_CityID__2E1BDC42" Association="Self.FK__Coach__FK_CityID__2E1BDC42">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="Coach" EntitySet="Coach" />
           </AssociationSet>
-          <AssociationSet Name="FK__Coach__FK_Gender__52593CB8" Association="Self.FK__Coach__FK_Gender__52593CB8">
+          <AssociationSet Name="FK__Coach__FK_Gender__2F10007B" Association="Self.FK__Coach__FK_Gender__2F10007B">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Coach" EntitySet="Coach" />
           </AssociationSet>
-          <AssociationSet Name="FK__Coach__FK_TitleI__5165187F" Association="Self.FK__Coach__FK_TitleI__5165187F">
+          <AssociationSet Name="FK__Coach__FK_TitleI__300424B4" Association="Self.FK__Coach__FK_TitleI__300424B4">
             <End Role="Title" EntitySet="Title" />
             <End Role="Coach" EntitySet="Coach" />
           </AssociationSet>
-          <AssociationSet Name="FK__Coach__LoginID__74AE54BC" Association="Self.FK__Coach__LoginID__74AE54BC">
+          <AssociationSet Name="FK__Coach__LoginID__30F848ED" Association="Self.FK__Coach__LoginID__30F848ED">
             <End Role="userLogin" EntitySet="userLogin" />
             <End Role="Coach" EntitySet="Coach" />
           </AssociationSet>
-          <AssociationSet Name="FK__Interest__TopicI__778AC167" Association="Self.FK__Interest__TopicI__778AC167">
-            <End Role="Topics" EntitySet="Topics" />
-            <End Role="Interest" EntitySet="Interest" />
+          <AssociationSet Name="FK__Coach__Universit__31EC6D26" Association="Self.FK__Coach__Universit__31EC6D26">
+            <End Role="University" EntitySet="University" />
+            <End Role="Coach" EntitySet="Coach" />
           </AssociationSet>
-          <AssociationSet Name="FK__Interest__UserID__787EE5A0" Association="Self.FK__Interest__UserID__787EE5A0">
-            <End Role="myUser" EntitySet="myUser" />
-            <End Role="Interest" EntitySet="Interest" />
-          </AssociationSet>
-          <AssociationSet Name="FK__myUser__FK_Activ__59FA5E80" Association="Self.FK__myUser__FK_Activ__59FA5E80">
+          <AssociationSet Name="FK__myUser__FK_Activ__32E0915F" Association="Self.FK__myUser__FK_Activ__32E0915F">
             <End Role="Active" EntitySet="Active" />
             <End Role="myUser" EntitySet="myUser" />
           </AssociationSet>
-          <AssociationSet Name="FK__myUser__FK_CityI__5AEE82B9" Association="Self.FK__myUser__FK_CityI__5AEE82B9">
+          <AssociationSet Name="FK__myUser__FK_CityI__33D4B598" Association="Self.FK__myUser__FK_CityI__33D4B598">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="myUser" EntitySet="myUser" />
           </AssociationSet>
-          <AssociationSet Name="FK__myUser__FK_Gende__5812160E" Association="Self.FK__myUser__FK_Gende__5812160E">
+          <AssociationSet Name="FK__myUser__FK_Gende__34C8D9D1" Association="Self.FK__myUser__FK_Gende__34C8D9D1">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="myUser" EntitySet="myUser" />
           </AssociationSet>
-          <AssociationSet Name="FK__myUser__FK_Relat__59063A47" Association="Self.FK__myUser__FK_Relat__59063A47">
+          <AssociationSet Name="FK__myUser__FK_Relat__35BCFE0A" Association="Self.FK__myUser__FK_Relat__35BCFE0A">
             <End Role="RelationshipStatus" EntitySet="RelationshipStatus" />
             <End Role="myUser" EntitySet="myUser" />
           </AssociationSet>
-          <AssociationSet Name="FK__myUser__FK_Title__571DF1D5" Association="Self.FK__myUser__FK_Title__571DF1D5">
+          <AssociationSet Name="FK__myUser__FK_Title__36B12243" Association="Self.FK__myUser__FK_Title__36B12243">
             <End Role="Title" EntitySet="Title" />
             <End Role="myUser" EntitySet="myUser" />
           </AssociationSet>
-          <AssociationSet Name="FK__myUser__LoginID__73BA3083" Association="Self.FK__myUser__LoginID__73BA3083">
+          <AssociationSet Name="FK__myUser__LoginID__37A5467C" Association="Self.FK__myUser__LoginID__37A5467C">
             <End Role="userLogin" EntitySet="userLogin" />
             <End Role="myUser" EntitySet="myUser" />
           </AssociationSet>
-          <AssociationSet Name="FK__Post__FK_UserID__5DCAEF64" Association="Self.FK__Post__FK_UserID__5DCAEF64">
+          <AssociationSet Name="FK__Post__FK_UserID__38996AB5" Association="Self.FK__Post__FK_UserID__38996AB5">
             <End Role="myUser" EntitySet="myUser" />
             <End Role="Post" EntitySet="Post" />
           </AssociationSet>
-          <AssociationSet Name="FK__Professio__Coach__6754599E" Association="Self.FK__Professio__Coach__6754599E">
-            <End Role="Coach" EntitySet="Coach" />
-            <End Role="Profession" EntitySet="Profession" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Professio__Topic__68487DD7" Association="Self.FK__Professio__Topic__68487DD7">
+          <AssociationSet Name="FK__Post__Topic__398D8EEE" Association="Self.FK__Post__Topic__398D8EEE">
             <End Role="Topics" EntitySet="Topics" />
-            <End Role="Profession" EntitySet="Profession" />
+            <End Role="Post" EntitySet="Post" />
           </AssociationSet>
-          <AssociationSet Name="FK__Professio__Unive__66603565" Association="Self.FK__Professio__Unive__66603565">
-            <End Role="University" EntitySet="University" />
-            <End Role="Profession" EntitySet="Profession" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Professio__Verif__693CA210" Association="Self.FK__Professio__Verif__693CA210">
-            <End Role="Verification" EntitySet="Verification" />
-            <End Role="Profession" EntitySet="Profession" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Response__FK_Coa__60A75C0F" Association="Self.FK__Response__FK_Coa__60A75C0F">
+          <AssociationSet Name="FK__Response__FK_Coa__3B75D760" Association="Self.FK__Response__FK_Coa__3B75D760">
             <End Role="Coach" EntitySet="Coach" />
             <End Role="Response" EntitySet="Response" />
           </AssociationSet>
-          <AssociationSet Name="FK__Response__FK_Pos__628FA481" Association="Self.FK__Response__FK_Pos__628FA481">
+          <AssociationSet Name="FK__Response__FK_Pos__3C69FB99" Association="Self.FK__Response__FK_Pos__3C69FB99">
             <End Role="Post" EntitySet="Post" />
             <End Role="Response" EntitySet="Response" />
           </AssociationSet>
-          <AssociationSet Name="FK__Response__FK_Res__619B8048" Association="Self.FK__Response__FK_Res__619B8048">
+          <AssociationSet Name="FK__Response__FK_Res__3D5E1FD2" Association="Self.FK__Response__FK_Res__3D5E1FD2">
             <End Role="Response" EntitySet="Response" />
             <End Role="Response1" EntitySet="Response" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Response__Topic__3E52440B" Association="Self.FK__Response__Topic__3E52440B">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="Response" EntitySet="Response" />
           </AssociationSet>
           <AssociationSet Name="FK_Cities_Regions" Association="Self.FK_Cities_Regions">
             <End Role="Regions" EntitySet="Regions" />
@@ -594,8 +512,10 @@
           <NavigationProperty Name="Gender" Relationship="Self.FK__Coach__FK_Gender__52593CB8" FromRole="Coach" ToRole="Gender" />
           <NavigationProperty Name="Title" Relationship="Self.FK__Coach__FK_TitleI__5165187F" FromRole="Coach" ToRole="Title" />
           <NavigationProperty Name="userLogin" Relationship="Self.FK__Coach__LoginID__74AE54BC" FromRole="Coach" ToRole="userLogin" />
-          <NavigationProperty Name="Professions" Relationship="Self.FK__Professio__Coach__6754599E" FromRole="Coach" ToRole="Profession" />
           <NavigationProperty Name="Responses" Relationship="Self.FK__Response__FK_Coa__60A75C0F" FromRole="Coach" ToRole="Response" />
+          <Property Name="CoachExperience" Type="Int32" />
+          <Property Name="University" Type="Int32" />
+          <NavigationProperty Name="University1" Relationship="BaeCoachModel.FK__Coach__Universit__31EC6D26" FromRole="Coach" ToRole="University" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -616,16 +536,6 @@
           <NavigationProperty Name="Coaches" Relationship="Self.FK__Coach__FK_Gender__52593CB8" FromRole="Gender" ToRole="Coach" />
           <NavigationProperty Name="myUsers" Relationship="Self.FK__myUser__FK_Gende__5812160E" FromRole="Gender" ToRole="myUser" />
         </EntityType>
-        <EntityType Name="Interest">
-          <Key>
-            <PropertyRef Name="InterestID" />
-          </Key>
-          <Property Name="InterestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TopicID" Type="Int32" />
-          <Property Name="UserID" Type="Int32" />
-          <NavigationProperty Name="Topic" Relationship="Self.FK__Interest__TopicI__778AC167" FromRole="Interest" ToRole="Topics" />
-          <NavigationProperty Name="myUser" Relationship="Self.FK__Interest__UserID__787EE5A0" FromRole="Interest" ToRole="myUser" />
-        </EntityType>
         <EntityType Name="myUser">
           <Key>
             <PropertyRef Name="UserID" />
@@ -643,7 +553,6 @@
           <NavigationProperty Name="Active" Relationship="Self.FK__myUser__FK_Activ__59FA5E80" FromRole="myUser" ToRole="Active" />
           <NavigationProperty Name="City" Relationship="Self.FK__myUser__FK_CityI__5AEE82B9" FromRole="myUser" ToRole="Cities" />
           <NavigationProperty Name="Gender" Relationship="Self.FK__myUser__FK_Gende__5812160E" FromRole="myUser" ToRole="Gender" />
-          <NavigationProperty Name="Interests" Relationship="Self.FK__Interest__UserID__787EE5A0" FromRole="myUser" ToRole="Interest" />
           <NavigationProperty Name="RelationshipStatu" Relationship="Self.FK__myUser__FK_Relat__59063A47" FromRole="myUser" ToRole="RelationshipStatus" />
           <NavigationProperty Name="Title" Relationship="Self.FK__myUser__FK_Title__571DF1D5" FromRole="myUser" ToRole="Title" />
           <NavigationProperty Name="userLogin" Relationship="Self.FK__myUser__LoginID__73BA3083" FromRole="myUser" ToRole="userLogin" />
@@ -658,20 +567,9 @@
           <Property Name="FK_UserID" Type="Int32" />
           <NavigationProperty Name="myUser" Relationship="Self.FK__Post__FK_UserID__5DCAEF64" FromRole="Post" ToRole="myUser" />
           <NavigationProperty Name="Responses" Relationship="Self.FK__Response__FK_Pos__628FA481" FromRole="Post" ToRole="Response" />
-        </EntityType>
-        <EntityType Name="Profession">
-          <Key>
-            <PropertyRef Name="ProfessionID" />
-          </Key>
-          <Property Name="ProfessionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UniversityID" Type="Int32" />
-          <Property Name="CoachID" Type="Int32" />
-          <Property Name="TopicID" Type="Int32" />
-          <Property Name="VerificationID" Type="Int32" />
-          <NavigationProperty Name="Coach" Relationship="Self.FK__Professio__Coach__6754599E" FromRole="Profession" ToRole="Coach" />
-          <NavigationProperty Name="Topic" Relationship="Self.FK__Professio__Topic__68487DD7" FromRole="Profession" ToRole="Topics" />
-          <NavigationProperty Name="University" Relationship="Self.FK__Professio__Unive__66603565" FromRole="Profession" ToRole="University" />
-          <NavigationProperty Name="Verification" Relationship="Self.FK__Professio__Verif__693CA210" FromRole="Profession" ToRole="Verification" />
+          <Property Name="TopicName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Topic" Type="Int32" />
+          <NavigationProperty Name="Topic1" Relationship="BaeCoachModel.FK__Post__Topic__398D8EEE" FromRole="Post" ToRole="Topic" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -704,16 +602,8 @@
           <NavigationProperty Name="Post" Relationship="Self.FK__Response__FK_Pos__628FA481" FromRole="Response" ToRole="Post" />
           <NavigationProperty Name="Response1" Relationship="Self.FK__Response__FK_Res__619B8048" FromRole="Response" ToRole="Response1" />
           <NavigationProperty Name="Response2" Relationship="Self.FK__Response__FK_Res__619B8048" FromRole="Response1" ToRole="Response" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Topic" Type="Int32" />
+          <NavigationProperty Name="Topic1" Relationship="BaeCoachModel.FK__Response__Topic__3E52440B" FromRole="Response" ToRole="Topic" />
         </EntityType>
         <EntityType Name="Title">
           <Key>
@@ -730,9 +620,8 @@
           </Key>
           <Property Name="TopicID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TopicName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Interests" Relationship="Self.FK__Interest__TopicI__778AC167" FromRole="Topics" ToRole="Interest" />
-          <NavigationProperty Name="Professions" Relationship="Self.FK__Professio__Topic__68487DD7" FromRole="Topics" ToRole="Profession" />
-          <Property Name="ImageLinks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Posts" Relationship="BaeCoachModel.FK__Post__Topic__398D8EEE" FromRole="Topic" ToRole="Post" />
+          <NavigationProperty Name="Responses" Relationship="BaeCoachModel.FK__Response__Topic__3E52440B" FromRole="Topic" ToRole="Response" />
         </EntityType>
         <EntityType Name="University">
           <Key>
@@ -740,7 +629,7 @@
           </Key>
           <Property Name="UniversityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UniversityName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Professions" Relationship="Self.FK__Professio__Unive__66603565" FromRole="University" ToRole="Profession" />
+          <NavigationProperty Name="Coaches" Relationship="BaeCoachModel.FK__Coach__Universit__31EC6D26" FromRole="University" ToRole="Coach" />
         </EntityType>
         <EntityType Name="userLogin">
           <Key>
@@ -752,14 +641,6 @@
           <Property Name="LoginType" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Coaches" Relationship="Self.FK__Coach__LoginID__74AE54BC" FromRole="userLogin" ToRole="Coach" />
           <NavigationProperty Name="myUsers" Relationship="Self.FK__myUser__LoginID__73BA3083" FromRole="userLogin" ToRole="myUser" />
-        </EntityType>
-        <EntityType Name="Verification">
-          <Key>
-            <PropertyRef Name="VerificationID" />
-          </Key>
-          <Property Name="VerificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VerificationStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Professions" Relationship="Self.FK__Professio__Verif__693CA210" FromRole="Verification" ToRole="Profession" />
         </EntityType>
         <Association Name="FK__Coach__FK_Active__534D60F1">
           <End Role="Active" Type="Self.Active" Multiplicity="0..1" />
@@ -857,18 +738,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Professio__Coach__6754599E">
-          <End Role="Coach" Type="Self.Coach" Multiplicity="0..1" />
-          <End Role="Profession" Type="Self.Profession" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Coach">
-              <PropertyRef Name="CoachID" />
-            </Principal>
-            <Dependent Role="Profession">
-              <PropertyRef Name="CoachID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Response__FK_Coa__60A75C0F">
           <End Role="Coach" Type="Self.Coach" Multiplicity="0..1" />
           <End Role="Response" Type="Self.Response" Multiplicity="*" />
@@ -902,30 +771,6 @@
             </Principal>
             <Dependent Role="myUser">
               <PropertyRef Name="FK_GenderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Interest__TopicI__778AC167">
-          <End Role="Topics" Type="Self.Topic" Multiplicity="0..1" />
-          <End Role="Interest" Type="Self.Interest" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Topics">
-              <PropertyRef Name="TopicID" />
-            </Principal>
-            <Dependent Role="Interest">
-              <PropertyRef Name="TopicID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Interest__UserID__787EE5A0">
-          <End Role="myUser" Type="Self.myUser" Multiplicity="0..1" />
-          <End Role="Interest" Type="Self.Interest" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="myUser">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="Interest">
-              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -989,42 +834,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Professio__Topic__68487DD7">
-          <End Role="Topics" Type="Self.Topic" Multiplicity="0..1" />
-          <End Role="Profession" Type="Self.Profession" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Topics">
-              <PropertyRef Name="TopicID" />
-            </Principal>
-            <Dependent Role="Profession">
-              <PropertyRef Name="TopicID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Professio__Unive__66603565">
-          <End Role="University" Type="Self.University" Multiplicity="0..1" />
-          <End Role="Profession" Type="Self.Profession" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="University">
-              <PropertyRef Name="UniversityID" />
-            </Principal>
-            <Dependent Role="Profession">
-              <PropertyRef Name="UniversityID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Professio__Verif__693CA210">
-          <End Role="Verification" Type="Self.Verification" Multiplicity="0..1" />
-          <End Role="Profession" Type="Self.Profession" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Verification">
-              <PropertyRef Name="VerificationID" />
-            </Principal>
-            <Dependent Role="Profession">
-              <PropertyRef Name="VerificationID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Response__FK_Res__619B8048">
           <End Role="Response" Type="Self.Response" Multiplicity="0..1" />
           <End Role="Response1" Type="Self.Response" Multiplicity="*" />
@@ -1043,19 +852,15 @@
           <EntitySet Name="Coaches" EntityType="Self.Coach" />
           <EntitySet Name="Countries" EntityType="Self.Country" />
           <EntitySet Name="Genders" EntityType="Self.Gender" />
-          <EntitySet Name="Interests" EntityType="Self.Interest" />
           <EntitySet Name="myUsers" EntityType="Self.myUser" />
           <EntitySet Name="Posts" EntityType="Self.Post" />
-          <EntitySet Name="Professions" EntityType="Self.Profession" />
           <EntitySet Name="Regions" EntityType="Self.Region" />
           <EntitySet Name="RelationshipStatus" EntityType="Self.RelationshipStatu" />
           <EntitySet Name="Responses" EntityType="Self.Response" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Titles" EntityType="Self.Title" />
           <EntitySet Name="Topics" EntityType="Self.Topic" />
           <EntitySet Name="Universities" EntityType="Self.University" />
           <EntitySet Name="userLogins" EntityType="Self.userLogin" />
-          <EntitySet Name="Verifications" EntityType="Self.Verification" />
           <AssociationSet Name="FK__Coach__FK_Active__534D60F1" Association="Self.FK__Coach__FK_Active__534D60F1">
             <End Role="Active" EntitySet="Actives" />
             <End Role="Coach" EntitySet="Coaches" />
@@ -1088,10 +893,6 @@
             <End Role="userLogin" EntitySet="userLogins" />
             <End Role="Coach" EntitySet="Coaches" />
           </AssociationSet>
-          <AssociationSet Name="FK__Professio__Coach__6754599E" Association="Self.FK__Professio__Coach__6754599E">
-            <End Role="Coach" EntitySet="Coaches" />
-            <End Role="Profession" EntitySet="Professions" />
-          </AssociationSet>
           <AssociationSet Name="FK__Response__FK_Coa__60A75C0F" Association="Self.FK__Response__FK_Coa__60A75C0F">
             <End Role="Coach" EntitySet="Coaches" />
             <End Role="Response" EntitySet="Responses" />
@@ -1103,14 +904,6 @@
           <AssociationSet Name="FK__myUser__FK_Gende__5812160E" Association="Self.FK__myUser__FK_Gende__5812160E">
             <End Role="Gender" EntitySet="Genders" />
             <End Role="myUser" EntitySet="myUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Interest__TopicI__778AC167" Association="Self.FK__Interest__TopicI__778AC167">
-            <End Role="Topics" EntitySet="Topics" />
-            <End Role="Interest" EntitySet="Interests" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Interest__UserID__787EE5A0" Association="Self.FK__Interest__UserID__787EE5A0">
-            <End Role="myUser" EntitySet="myUsers" />
-            <End Role="Interest" EntitySet="Interests" />
           </AssociationSet>
           <AssociationSet Name="FK__myUser__FK_Relat__59063A47" Association="Self.FK__myUser__FK_Relat__59063A47">
             <End Role="RelationshipStatus" EntitySet="RelationshipStatus" />
@@ -1132,23 +925,59 @@
             <End Role="Post" EntitySet="Posts" />
             <End Role="Response" EntitySet="Responses" />
           </AssociationSet>
-          <AssociationSet Name="FK__Professio__Topic__68487DD7" Association="Self.FK__Professio__Topic__68487DD7">
-            <End Role="Topics" EntitySet="Topics" />
-            <End Role="Profession" EntitySet="Professions" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Professio__Unive__66603565" Association="Self.FK__Professio__Unive__66603565">
-            <End Role="University" EntitySet="Universities" />
-            <End Role="Profession" EntitySet="Professions" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Professio__Verif__693CA210" Association="Self.FK__Professio__Verif__693CA210">
-            <End Role="Verification" EntitySet="Verifications" />
-            <End Role="Profession" EntitySet="Professions" />
-          </AssociationSet>
           <AssociationSet Name="FK__Response__FK_Res__619B8048" Association="Self.FK__Response__FK_Res__619B8048">
             <End Role="Response" EntitySet="Responses" />
             <End Role="Response1" EntitySet="Responses" />
           </AssociationSet>
+          <AssociationSet Name="FK__Coach__Universit__31EC6D26" Association="BaeCoachModel.FK__Coach__Universit__31EC6D26">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="Coach" EntitySet="Coaches" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Post__Topic__398D8EEE" Association="BaeCoachModel.FK__Post__Topic__398D8EEE">
+            <End Role="Topic" EntitySet="Topics" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Response__Topic__3E52440B" Association="BaeCoachModel.FK__Response__Topic__3E52440B">
+            <End Role="Topic" EntitySet="Topics" />
+            <End Role="Response" EntitySet="Responses" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__Coach__Universit__31EC6D26">
+          <End Type="BaeCoachModel.University" Role="University" Multiplicity="0..1" />
+          <End Type="BaeCoachModel.Coach" Role="Coach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="UniversityID" />
+            </Principal>
+            <Dependent Role="Coach">
+              <PropertyRef Name="University" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Post__Topic__398D8EEE">
+          <End Type="BaeCoachModel.Topic" Role="Topic" Multiplicity="0..1" />
+          <End Type="BaeCoachModel.Post" Role="Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="TopicID" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="Topic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Response__Topic__3E52440B">
+          <End Type="BaeCoachModel.Topic" Role="Topic" Multiplicity="0..1" />
+          <End Type="BaeCoachModel.Response" Role="Response" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="TopicID" />
+            </Principal>
+            <Dependent Role="Response">
+              <PropertyRef Name="Topic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1175,6 +1004,8 @@
           <EntitySetMapping Name="Coaches">
             <EntityTypeMapping TypeName="BaeCoachModel.Coach">
               <MappingFragment StoreEntitySet="Coach">
+                <ScalarProperty Name="University" ColumnName="University" />
+                <ScalarProperty Name="CoachExperience" ColumnName="CoachExperience" />
                 <ScalarProperty Name="CoachID" ColumnName="CoachID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -1205,15 +1036,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Interests">
-            <EntityTypeMapping TypeName="BaeCoachModel.Interest">
-              <MappingFragment StoreEntitySet="Interest">
-                <ScalarProperty Name="InterestID" ColumnName="InterestID" />
-                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="myUsers">
             <EntityTypeMapping TypeName="BaeCoachModel.myUser">
               <MappingFragment StoreEntitySet="myUser">
@@ -1233,20 +1055,11 @@
           <EntitySetMapping Name="Posts">
             <EntityTypeMapping TypeName="BaeCoachModel.Post">
               <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+                <ScalarProperty Name="TopicName" ColumnName="TopicName" />
                 <ScalarProperty Name="PostID" ColumnName="PostID" />
                 <ScalarProperty Name="PostText" ColumnName="PostText" />
                 <ScalarProperty Name="FK_UserID" ColumnName="FK_UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Professions">
-            <EntityTypeMapping TypeName="BaeCoachModel.Profession">
-              <MappingFragment StoreEntitySet="Profession">
-                <ScalarProperty Name="ProfessionID" ColumnName="ProfessionID" />
-                <ScalarProperty Name="UniversityID" ColumnName="UniversityID" />
-                <ScalarProperty Name="CoachID" ColumnName="CoachID" />
-                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
-                <ScalarProperty Name="VerificationID" ColumnName="VerificationID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1270,22 +1083,12 @@
           <EntitySetMapping Name="Responses">
             <EntityTypeMapping TypeName="BaeCoachModel.Response">
               <MappingFragment StoreEntitySet="Response">
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
                 <ScalarProperty Name="ResponseID" ColumnName="ResponseID" />
                 <ScalarProperty Name="RespronsText" ColumnName="RespronsText" />
                 <ScalarProperty Name="FK_CoachID" ColumnName="FK_CoachID" />
                 <ScalarProperty Name="FK_ResponseID" ColumnName="FK_ResponseID" />
                 <ScalarProperty Name="FK_PostID" ColumnName="FK_PostID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="BaeCoachModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1300,7 +1103,6 @@
           <EntitySetMapping Name="Topics">
             <EntityTypeMapping TypeName="BaeCoachModel.Topic">
               <MappingFragment StoreEntitySet="Topics">
-                <ScalarProperty Name="ImageLinks" ColumnName="ImageLinks" />
                 <ScalarProperty Name="TopicID" ColumnName="TopicID" />
                 <ScalarProperty Name="TopicName" ColumnName="TopicName" />
               </MappingFragment>
@@ -1321,14 +1123,6 @@
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
                 <ScalarProperty Name="LoginType" ColumnName="LoginType" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Verifications">
-            <EntityTypeMapping TypeName="BaeCoachModel.Verification">
-              <MappingFragment StoreEntitySet="Verification">
-                <ScalarProperty Name="VerificationID" ColumnName="VerificationID" />
-                <ScalarProperty Name="VerificationStatus" ColumnName="VerificationStatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

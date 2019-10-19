@@ -23,9 +23,12 @@ namespace BaeCoach.Models
         public int PostID { get; set; }
         public string PostText { get; set; }
         public Nullable<int> FK_UserID { get; set; }
+        public string TopicName { get; set; }
+        public Nullable<int> Topic { get; set; }
     
         public virtual myUser myUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Response> Responses { get; set; }
+        public virtual Topic Topic1 { get; set; }
     }
 }

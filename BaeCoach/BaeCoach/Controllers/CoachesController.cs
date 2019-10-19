@@ -54,17 +54,18 @@ namespace BaeCoach.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CoachID,Name,Surname,Username,FK_TitleID,FK_GenderID,FK_ActiveID,FK_CityID,LoginID")] Coach coach, string UserPassword)
+        public ActionResult Create([Bind(Include = "CoachID,Name,Surname,Username,FK_TitleID,FK_GenderID,FK_ActiveID,FK_CityID,LoginID, University")] Coach coach, string UserPassword)
         {
             userLogin ulogin = new userLogin();
             var hasedValue = ComputeSha256Hash(UserPassword);
 
             if (ModelState.IsValid)
             {
+                University uni = new University();
                 userLogin ul = new userLogin();
                 ul.UserPassword = hasedValue;
                 ul.Username = coach.Username;
-                ul.LoginType = false;
+                ul.LoginType = false; 
 
                 db.userLogins.Add(ul);
                 db.Coaches.Add(coach);
@@ -77,6 +78,7 @@ namespace BaeCoach.Controllers
             ViewBag.FK_GenderID = new SelectList(db.Genders, "GenderID", "GenderDescription", coach.FK_GenderID);
             ViewBag.FK_TitleID = new SelectList(db.Titles, "TitleID", "Titledescription", coach.FK_TitleID);
             ViewBag.LoginID = new SelectList(db.userLogins, "UserLoginID", "Username", coach.LoginID);
+            ViewBag.University = new SelectList(db.Universities, "UniversityID", "UniversityName", coach.University);
             return View(coach);
         }
 

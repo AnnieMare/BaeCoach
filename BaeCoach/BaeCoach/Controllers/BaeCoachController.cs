@@ -6,6 +6,8 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using BaeCoach.Models;
+using BaeCoach.ViewModelsCarla;
+using BaeCoach.ViewModels;
 
 
 namespace BaeCoach.Controllers
@@ -27,29 +29,16 @@ namespace BaeCoach.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult DoLogin(string Email, string Password)
+        public ActionResult DoLogin(string Username, string Password)
         {
 
-            //user email en user password moet in die database gesit word. ALong with others
-
-            var hashedPassword = ComputeSha256Hash(Password);
-            Models.userLogin user = db.userLogins.Where(zz => zz.Username == Username && zz.UserPassword == hashedPassword).FirstOrDefault();
-
-            if (user != null)
-            { //user viewmodel in folder "ViewModelsCarla" want ek kon nie die ander een vind nie, maak net seker jy verander dit terug
-                UserVM userVME = new UserVM();
-                userVME.user = user; //weet nie hoekom hierdie n error gooi nie? logincal error?
-                userVME.RefreshGUID(db);
-                TempData["userVM"] = userVME;
-                return View("Login", "Login"); //need to adjust this accordingly
-            }
             return View(); //else- it must return with an error message
         
         }
 
         public ActionResult BaeSignUpPage()
         {
-            BaeSignUpViewModel vm = new BaeSignUpViewModel();
+            BaeCoach.ViewModel.BaeSignUpViewModel vm = new ViewModel.BaeSignUpViewModel();
             vm.CountryList = db.Countries.ToList();
             vm.RegionList = db.Regions.ToList();
             vm.CityList = db.Cities.ToList();
@@ -117,7 +106,7 @@ namespace BaeCoach.Controllers
         }
         public ActionResult CoachSignUpPage()
         {
-            CoachSignUpViewModel vm = new CoachSignUpViewModel();
+            BaeCoach.ViewModel.CoachSignUpViewModel vm = new BaeCoach.ViewModel.CoachSignUpViewModel();
             vm.CountryList = db.Countries.ToList();
             vm.RegionList = db.Regions.ToList();
             vm.CityList = db.Cities.ToList();
@@ -180,18 +169,18 @@ namespace BaeCoach.Controllers
         public ActionResult Home(string Selected)
         {
 
-            string[] userSelectedTopic = Selected.Split(',');
-            List<int> userTopic = new List<int>();
+            //string[] userSelectedTopic = Selected.Split(',');
+            //List<int> userTopic = new List<int>();
             
             
-            for (int i = 0; i < userSelectedTopic.Count(); i++)
-            {
-                userTopic.Add(Convert.ToInt32(userSelectedTopic[i]));
-            }
+            //for (int i = 0; i < userSelectedTopic.Count(); i++)
+            //{
+            //    userTopic.Add(Convert.ToInt32(userSelectedTopic[i]));
+            //}
 
-            Interest userHomeTopic = new Interest();
-            userHomeTopic.InterestID = Convert.ToInt32(userTopic);
-            db.SaveChanges();
+            //Interest userHomeTopic = new Interest();
+            //userHomeTopic.InterestID = Convert.ToInt32(userTopic);
+            //db.SaveChanges();
 
 
 
@@ -211,9 +200,12 @@ namespace BaeCoach.Controllers
             return View();
         }
 
-        public ActionResult UserFeed(/*myUser currentUser*/)
+        public ActionResult UserFeed(/*myUser user, int TopicID*/)
         {
-
+           
+            userFeed feed = new userFeed();
+            feed.PopulateUserFeed(1/*, user*/);
+           
             return View(/*currentUser.Interests*/);
         }
 

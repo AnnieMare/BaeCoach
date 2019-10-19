@@ -14,14 +14,9 @@ namespace BaeCoach.Models
     
     public partial class Coach
     {
-        internal string Email;
-        internal DateTime GraduationDate;
-        internal string StudyField;
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Coach()
         {
-            this.Professions = new HashSet<Profession>();
             this.Responses = new HashSet<Response>();
         }
     
@@ -34,6 +29,8 @@ namespace BaeCoach.Models
         public Nullable<int> FK_ActiveID { get; set; }
         public Nullable<int> FK_CityID { get; set; }
         public Nullable<int> LoginID { get; set; }
+        public Nullable<int> CoachExperience { get; set; }
+        public Nullable<int> University { get; set; }
     
         public virtual Active Active { get; set; }
         public virtual City City { get; set; }
@@ -41,8 +38,8 @@ namespace BaeCoach.Models
         public virtual Title Title { get; set; }
         public virtual userLogin userLogin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Profession> Professions { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Response> Responses { get; set; }
+        public virtual ExperienceLevel ExperienceLevel { get; set; }
+        public virtual University University1 { get; set; }
     }
 }

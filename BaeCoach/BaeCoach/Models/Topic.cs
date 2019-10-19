@@ -17,8 +17,8 @@ namespace BaeCoach.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Topic()
         {
-            this.Interests = new HashSet<Interest>();
-            this.Professions = new HashSet<Profession>();
+            this.Posts = new HashSet<Post>();
+            this.Responses = new HashSet<Response>();
         }
     
         public int TopicID { get; set; }
@@ -26,8 +26,8 @@ namespace BaeCoach.Models
         public string ImageLinks { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Interest> Interests { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Profession> Professions { get; set; }
+        public virtual ICollection<Response> Responses { get; set; }
     }
 }

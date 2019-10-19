@@ -25,11 +25,13 @@ namespace BaeCoach.Models
         public Nullable<int> FK_CoachID { get; set; }
         public Nullable<int> FK_ResponseID { get; set; }
         public Nullable<int> FK_PostID { get; set; }
+        public Nullable<int> Topic { get; set; }
     
         public virtual Coach Coach { get; set; }
         public virtual Post Post { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Response> Response1 { get; set; }
         public virtual Response Response2 { get; set; }
+        public virtual Topic Topic1 { get; set; }
     }
 }

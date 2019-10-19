@@ -30,18 +30,15 @@ namespace BaeCoach.Models
         public virtual DbSet<Coach> Coaches { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
-        public virtual DbSet<Interest> Interests { get; set; }
         public virtual DbSet<myUser> myUsers { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
-        public virtual DbSet<Profession> Professions { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
         public virtual DbSet<RelationshipStatu> RelationshipStatus { get; set; }
         public virtual DbSet<Response> Responses { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Title> Titles { get; set; }
         public virtual DbSet<Topic> Topics { get; set; }
         public virtual DbSet<University> Universities { get; set; }
         public virtual DbSet<userLogin> userLogins { get; set; }
-        public virtual DbSet<Verification> Verifications { get; set; }
+        public virtual DbSet<ExperienceLevel> ExperienceLevels { get; set; }
     }
 }

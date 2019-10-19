@@ -17,13 +17,13 @@ namespace BaeCoach.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public University()
         {
-            this.Professions = new HashSet<Profession>();
+            this.Coaches = new HashSet<Coach>();
         }
     
         public int UniversityID { get; set; }
         public string UniversityName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Profession> Professions { get; set; }
+        public virtual ICollection<Coach> Coaches { get; set; }
     }
 }

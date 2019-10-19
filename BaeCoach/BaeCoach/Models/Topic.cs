@@ -23,7 +23,6 @@ namespace BaeCoach.Models
     
         public int TopicID { get; set; }
         public string TopicName { get; set; }
-        public string ImageLinks { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Post> Posts { get; set; }

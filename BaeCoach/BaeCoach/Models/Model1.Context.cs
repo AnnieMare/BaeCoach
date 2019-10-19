@@ -35,7 +35,6 @@ namespace BaeCoach.Models
         public virtual DbSet<Region> Regions { get; set; }
         public virtual DbSet<RelationshipStatu> RelationshipStatus { get; set; }
         public virtual DbSet<Response> Responses { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Title> Titles { get; set; }
         public virtual DbSet<Topic> Topics { get; set; }
         public virtual DbSet<University> Universities { get; set; }

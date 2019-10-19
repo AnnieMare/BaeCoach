@@ -24,16 +24,23 @@
 
                 @using (Html.BeginForm("BaeAdd", "BaeCoach", FormMethod.Post))
                 {
+
                     <div class="grid-container">
                         <div class="grid-item">
 
-                            <lable>Name:</lable><input type="text" class="form-control" id="Name" required />
-                            <lable>Surname:</lable><input type="text" class="form-control" id="Surname" required />
-                            <lable>Username:</lable><input type="text" class="form-control" id="UserName" required />
-                            <lable>Email:</lable><input type="email" class="form-control" id="Email" required />
-                            <lable>Password:</lable><input type="password" class="form-control" id="Password" required />
+                            <label>Name:</label><input type="text" class="form-control" name="Name" required />
+                            <label>Surname:</label><input type="text" class="form-control" name="Surname" required />
+                            @*<lable>Username:</lable><input type="text" class="form-control" id="UserName" required />*@
+                            <label>Email:</label><input type="email" class="form-control" name="UserName" required />
+                            <label>Password:</label><input type="password" class="form-control" name="Password" required />
+                            <input name="CountryID" type="text" hidden />
+                            <input name="RegionID" type="text" hidden />
+                            <input name="CityID" type="text" hidden />
+                            <input name="TitleID" type="text" hidden />
+                            <input name="GenderID" type="text" hidden />
+                            <input name="RealtionshipStatusID" type="text" hidden />
 
-                            <lable>Country:</lable><select class="form-control" id="Country" required>
+                            <lable>Country:</lable><select class="form-control" name="Country" required>
                                 <option>---Please Select---</option>
                                 @foreach (var country in Model.CountryList)
                                 {
@@ -41,7 +48,7 @@
                                 }
                             </select>
 
-                            <lable>Provice:</lable><select class="form-control" id="Provice" required>
+                            <lable>Provice:</lable><select class="form-control" name="Region" required>
                                 <option>---Please Select---</option>
                                 @foreach (var region in Model.RegionList)
                                 {
@@ -50,24 +57,22 @@
 
                             </select>
 
-                            <lable>City:</lable><select class="form-control" id="City" required>
+                            <lable>City:</lable><select class="form-control" name="City" required>
                                 <option>---Please Select---</option>
-                                @foreach (var region in Model.CityList)
+                                @foreach (var city in Model.CityList)
                                 {
-                                    <option>@region.Name</option>
+                                    <option>@city.Name</option>
                                 }
                             </select>
                         </div>
 
                         <div class="grid-item">
-                            <lable for="Title">Title:</lable><select class="form-control" id="Title" style="width:40%; float:right" required>
+                            <lable for="Title">Title:</lable><select class="form-control" name="Title" style="width:40%; float:right" required>
                                 <option>---Please Select---</option>
-                                <option>Mr.</option>
-                                <option>Mrs.</option>
-                                <option>Miss.</option>
-                                <option>Dr.</option>
-                                <option>Mx.</option>
-                                <option>Prefer not to say</option>
+                                @foreach (var title in Model.TitleList)
+                                {
+                                    <option>@title.Titledescription</option>
+                                }
                             </select>
                             <br />
 
@@ -75,12 +80,12 @@
                             </div>
                             <br />
                             <div class="grid-item">
-                                <lable for="Gender">Gender:</lable><select class="form-control" id="Gender" style="width:40%; float:right " required>
+                                <lable for="Gender">Gender:</lable><select class="form-control" name="Gender" style="width:40%; float:right " required>
                                     <option>---Please Select---</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                    <option>Other</option>
-                                    <option>Prefer not to say</option>
+                                    @foreach (var gender in Model.GenderList)
+                                    {
+                                        <option>@gender.GenderDescription</option>
+                                    }
                                 </select>
                                 <br />
                             </div>
@@ -88,17 +93,18 @@
                             <div class="grid-item">
                             </div>
                             <div class="grid-item">
-                                <lable for="RelationshipStatus">Relationship Status:</lable><select class="form-control" id="RelationshipStatus" style="width:50%; float:right" required>
+                                <lable for="RelationshipStatus">Relationship Status:</lable><select class="form-control" name="RelationshipStatus" style="width:50%; float:right" required>
                                     <option>---Please Select---</option>
-                                    <option>Married</option>
-                                    <option>In A Relationship</option>
-                                    <option>Single</option>
-                                    <option>Its Complicated</option>
+                                    @foreach (var relationshipStatus in Model.RelationshipStatusList)
+                                    {
+                                        <option>@relationshipStatus.RelationshipStatusDescription</option>
+                                    }
                                 </select>
 
                             </div>
                         </div>
                         <div>
+                            
                             <input type="submit" class="btn" id="buttonRight" value="Submit" />
                         </div>
                     </div>

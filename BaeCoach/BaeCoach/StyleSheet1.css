@@ -114,6 +114,12 @@ lable{
    
     margin: 0.5rem;
 }
+#buttonLeft {
+    width: 40%;
+    float: left;
+    background-color: transparent;
+    margin: 0.5rem;
+}
 .form-control{
     width:80%;
 }

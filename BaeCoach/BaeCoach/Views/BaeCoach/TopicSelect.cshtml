@@ -1,6 +1,10 @@
 ﻿@model List<BaeCoach.Models.Topic>
 @{
     Layout = null;
+      if (Session["userID"] == null)
+    {
+         Response.Redirect("~/BaeCoach/DoLogIn");
+    }
 }
 
 <!DOCTYPE html>

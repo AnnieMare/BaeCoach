@@ -1,7 +1,11 @@
-﻿@model BaeCoach.ViewModels.CoachFeed
+﻿@model List<BaeCoach.Models.Post>
 @{
     Layout = null;
     int c = 0;
+    if (Session["userID"] == null || Convert.ToBoolean(Session["type"]) == false)
+    {
+        Response.Redirect("~/BaeCoach/DoLogIn");
+    }
 }
 
 <!DOCTYPE html>
@@ -30,7 +34,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav w-100">
-                 
+
                     <li class="nav-item dropdown ml-auto">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="glyphicon glyphicon-user"></span>
@@ -46,16 +50,24 @@
             </div>
         </nav>
     </div>
+
     <div>
 
         <div class="container">
             <div class="page-header text-center">
                 <h1 id="timeline">GET TO WORK HELPING OTHERS</h1>
             </div>
+            @*@using (Html.BeginForm("Home", "BaeCoach", FormMethod.Get))
+            {
+                <input id="Text1" type="text" value="@Session["userID"]" name="UserID" hidden />
+                <center><a class="dropdown-item" href="@Url.Action("Home", "BaeCoach")" style="font-size:15px">Back</a></center>
+            }*@
             <ul class="timeline">
 
-                @foreach (var item in Model.listPosts)
+
+                @foreach (var item in Model)
                 {
+
                     if (c == 0)
                     {
                         c = 1;
@@ -63,45 +75,65 @@
                         <li>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <img class="img-responsive" src="@Model.currentTopic.ImageLinks" />
+                                    <img class="img-responsive" src="@Session["ImageLink"] " />
 
                                 </div>
-                                <div class="timeline-body">
-                                  <<p>@Model.listPosts.Select(x=>x.PostText)</p>
-                                </div>
+                                @using (Html.BeginForm("Create", "Response", FormMethod.Get))
+                                {
+                                    <div class="timeline-body">
+                                        <p>@item.PostText</p>
+                                    </div>
 
-                                <div class="timeline-footer">
-                                    <a href="@Url.Action("CoachReply", "BaeCoach")" class="elements"><i class="fa fa-paper-plane"></i></a>
-                                    <a class="pull-right">@Model.currentTopic.TopicName</a>
-                                </div>
+                                    <div class="timeline-footer">
+                                        <a href="@Url.Action("Create", "Responses", FormMethod.Get)" class="elements"><i class="fa fa-paper-plane"></i></a>
+                                        <a class="pull-right">@Session["TopicName"]</a>
+                                        <input type="text" value="@item.PostID" name="PostID" hidden />
+                                        <input type="text" value="@item.Responses" name="ListOfResponses" hidden />
+                                        <input type="text" value="@Session["topicId"]" name="TopicID" hidden />
+
+                                    </div>
+                                }
                             </div>
                         </li>
 
                     }
+
                     else
                     {
+                        c = 0;
+                        <li class="timeline-inverted">
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <img class="img-responsive" src="@Session["ImageLink"]" />
 
-                    <li class="timeline-inverted">
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <img class="img-responsive" src="@Model.currentTopic.ImageLinks" />
+                                </div>
+                                @using (Html.BeginForm("Create", "Responses", FormMethod.Get))
+                                {
+                                    <div class="timeline-body">
+                                        <p>@item.PostText</p>
+                                    </div>
+
+                                    <div class="timeline-footer">
+                                        <a href="@Url.Action("Create", "Responses", FormMethod.Get)" class="elements"><i class="fa fa-paper-plane"></i></a>
+                                        <a class="pull-right">@Session["TopicName"]</a>
+                                        <input type="text" value="@item.PostID" name="PostID" hidden />
+                                        <input type="text" value="@item.Responses" name="ListOfResponses" hidden />
+                                        <input type="text" value="@Session["topicId"]" name="TopicID" hidden />
+                                    </div>
+                                }
 
                             </div>
-                            <div class="timeline-body">
-                                @*PostText*@
-                            </div>
+                        </li>
 
-                            <div class="timeline-footer">
-                                <a href="@Url.Action("CoachReply", "BaeCoach")" class="elements"><i class="fa fa-paper-plane"></i></a>
-                                <a class="pull-right">@Model.currentTopic.TopicName</a>
-                            </div>
-                        
-                        </div>
-                    </li>
                     }
                 }
-                </ul>
-            </div>
+                }
+
+
+                }
+                }
+            </ul>
         </div>
-    </body>
+    </div>
+</body>
 </html>

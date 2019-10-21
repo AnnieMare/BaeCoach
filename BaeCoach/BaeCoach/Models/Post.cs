@@ -11,6 +11,8 @@ namespace BaeCoach.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    
     
     public partial class Post
     {
@@ -23,12 +25,37 @@ namespace BaeCoach.Models
         public int PostID { get; set; }
         public string PostText { get; set; }
         public Nullable<int> FK_UserID { get; set; }
-        public string TopicName { get; set; }
         public Nullable<int> Topic { get; set; }
     
         public virtual myUser myUser { get; set; }
+        public virtual Topic Topic1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Response> Responses { get; set; }
-        public virtual Topic Topic1 { get; set; }
+
+        public static List<Response> listResponses { get; set; }
+
+        public string GetResponses(int topicID, int postID)
+        {
+            string myRespons = "No Respons Yet";
+            BaeCoachEntities3 db = new BaeCoachEntities3();
+            Response getResponse = db.Responses.Where(z => Topic == topicID && z.FK_PostID == PostID).FirstOrDefault();
+            if (getResponse != null)
+            {
+                myRespons = getResponse.RespronsText;
+            }
+           
+
+            return myRespons;
+
+            //return get.Select(x => new Response
+            //{
+            //    RespronsText = x.RespronsText
+            //}).FirstOrDefault();
+            //listResponses = db.Responses.Where(z => Topic == topicID && z.FK_PostID == PostID).ToList();
+            //return listResponses.Select(x=> new Response { 
+            //    RespronsText = x.RespronsText
+            //    });
+            //}
+        }
     }
 }

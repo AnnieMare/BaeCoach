@@ -34,12 +34,12 @@ namespace BaeCoach.Models
     
         public virtual Active Active { get; set; }
         public virtual City City { get; set; }
+        public virtual ExperienceLevel ExperienceLevel { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual Title Title { get; set; }
         public virtual userLogin userLogin { get; set; }
+        public virtual University University1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Response> Responses { get; set; }
-        public virtual ExperienceLevel ExperienceLevel { get; set; }
-        public virtual University University1 { get; set; }
     }
 }

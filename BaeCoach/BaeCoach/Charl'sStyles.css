@@ -4,6 +4,10 @@
     background-image: url("https://images.pexels.com/photos/988872/pexels-photo-988872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
     font-family: Georgia;
 }
+hr{
+    color:black;
+    font-size: 10px
+}
 
 #block {
     width: 40%;
@@ -65,7 +69,11 @@
         box-shadow: 5px 10px 18px #330033;
     }
 
-
+.blog_details #x {
+    width: 1500px;
+    height: 300px;
+    background-color: rgba(109, 115, 185, 0.5);
+}
 #card-header {
     Background-color: white;
     border-radius: 15px;
@@ -175,7 +183,7 @@
 
 /*HomeScreen */
 .blog_section {
-    padding-top: 5rem;
+    padding-top: 2rem;
     padding-bottom: 3rem;
 }
 

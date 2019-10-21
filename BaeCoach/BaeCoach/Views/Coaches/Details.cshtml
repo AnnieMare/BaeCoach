@@ -9,6 +9,11 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/StyleSheet1.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <title>Details</title>
 </head>
 <body>
@@ -57,6 +62,14 @@
             </dd>
     
             <dt>
+                @Html.DisplayNameFor(model => model.ExperienceLevel.ExperienceDescription)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ExperienceLevel.ExperienceDescription)
+            </dd>
+    
+            <dt>
                 @Html.DisplayNameFor(model => model.Gender.GenderDescription)
             </dt>
     
@@ -78,6 +91,14 @@
     
             <dd>
                 @Html.DisplayFor(model => model.userLogin.Username)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.University1.UniversityName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.University1.UniversityName)
             </dd>
     
         </dl>

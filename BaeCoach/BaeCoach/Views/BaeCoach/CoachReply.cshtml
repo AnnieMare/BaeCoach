@@ -1,6 +1,14 @@
 ﻿
 @{
     Layout = null;
+    if (Session["userID"] == null )
+    {
+        Response.Redirect("~/BaeCoach/DoLogIn");
+    }
+    if(Convert.ToInt32(Session["type"])== 0)
+    {
+
+    }
 }
 
 <!DOCTYPE html>
@@ -44,10 +52,9 @@
                     </div>
                 </nav>
             </div>
-          
+
         </div>
 
-        
         <center>
             <div id="reply">
                 <h1>Reply to Entry</h1>
@@ -61,10 +68,12 @@
                 <br />
                 <input type="submit" value="Post" class="btn-lg" />
                 <input type="submit" value="Back" class="btn-lg" />
-                <br />  
+                <br />
 
             </div>
         </center>
     </div>
+
 </body>
 </html>
+

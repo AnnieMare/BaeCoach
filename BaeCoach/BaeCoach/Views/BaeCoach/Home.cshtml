@@ -2,6 +2,10 @@
 
 @{
     Layout = null;
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/BaeCoach/DoLogIn");
+    }
 }
 
 <!DOCTYPE html>
@@ -27,12 +31,7 @@
     <!-- carousel -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
-    <style>
-        /*img{
-            height: 300px;
-            width: 200px;
-        }*/
-    </style>
+
 
     <title>Home</title>
 </head>
@@ -51,8 +50,12 @@
                             <span class="glyphicon glyphicon-user"></span>
                         </a>
                         <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink" style="right:0">
-                            <a class="dropdown-item" href="@Url.Action("DoLogin", "BaeCoach")">Log Out</a>
-                            <a class="dropdown-item" href="@Url.Action("UpdateProfile", "BaeCoach")">Edit Profile</a>
+                            @using (Html.BeginForm("checkEdit", "BaeCoach", FormMethod.Get))
+                            {
+                            <input id="Submit1" type="submit" value="Update Profile" style="border: none; background-color:transparent;"/>
+                            <input id="Text1" type="text" value="@Session["userID"]" name="UserID" hidden />
+                            }
+                            <a class="dropdown-item" href="@Url.Action("Logout", "BaeCoach")">Log out</a>
 
 
                         </div>
@@ -62,36 +65,51 @@
         </nav>
     </div>
     <br /><br /><br /><br />
-    <div style="text-align:center; font-family: Georgia;">
+    <div style="text-align:center; font-family: Georgia;  ">
         <br />
         <h1>Welcome to BaeCoach!</h1>
         <h4>Select a topic to start.</h4>
     </div>
+
     <section class="blog_section">
         <div class="container">
             <div class="blog_content">
                 <div class="owl-carousel owl-theme">
                     @foreach (var topic in Model)
                     {
-                        <div class="blog_item">
-                            <div class="blog_image">
-                                <img class="img-fluid" src="@topic.ImageLinks" alt="images not found">
+                        
+                            <div class="blog_item">
+                                <div class="blog_image">
+                                    <img class="img-fluid" src="@topic.ImageLinks" alt="images not found">
+
+                                </div>
+                                <div class="blog_details">
+                                    <center>
+                                        <div class="blog_title">
+                                            <h5>@topic.TopicName</h5>
+                                        </div>
+                                        @using (Html.BeginForm("Feed", "BaeCoach", FormMethod.Post))
+                                        {
+                                        <input id="read" type="submit" value="Read Posts" class="btn btn-light" style="background-color:  #a03ac4; color:white" />
+                                        <input id="Text1" type="text" hidden value="@topic.TopicID" name="topicID" />
+                                        <input id="Text2" type="text" hidden value="@topic.ImageLinks" name="ImageLink" />
+                                        
+                                        }
+
+                                    </center>
+
+                                </div>
 
                             </div>
-                            <div class="blog_details">
-                                <center>
-                                    <div class="blog_title">
-                                        <h5>@topic.TopicName</h5>
-                                    </div>
-                                    <a href="@Url.Action("Feed","BaeCoach", FormMethod.Post)"><input id="read" type="submit" value="Read Post" class="btn btn-light" style="background-color:  #a03ac4; color:white" /></a>
-                                </center>
-                            </div>
-                        </div>
+                        
+
+
                     }
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -124,5 +142,5 @@
             }
         }
     });
-    
+
 </script>

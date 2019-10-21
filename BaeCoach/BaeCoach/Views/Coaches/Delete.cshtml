@@ -9,86 +9,23 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/StyleSheet1.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <title>Delete</title>
 </head>
 <body>
-    <h3>Are you sure you want to delete this?</h3>
+    <h3>Are you sure you want to deactivate your account?</h3>
     <div>
-        <h4>Coach</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Surname)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Surname)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Username)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Username)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Active.ActiveDescription)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Active.ActiveDescription)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.City.Name)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.City.Name)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Gender.GenderDescription)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Gender.GenderDescription)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Title.Titledescription)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Title.Titledescription)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.userLogin.Username)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.userLogin.Username)
-            </dd>
-    
-        </dl>
+       
     
         @using (Html.BeginForm()) {
             @Html.AntiForgeryToken()
     
             <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
+                <input type="submit" value="Deactivate" class="btn btn-default" />
             </div>
         }
     </div>

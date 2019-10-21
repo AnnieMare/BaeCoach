@@ -14,12 +14,12 @@ namespace BaeCoach.Controllers
 {
     public class CoachesController : Controller
     {
-        private BaeCoachEntities1 db = new BaeCoachEntities1();
+        private BaeCoachEntities3 db = new BaeCoachEntities3();
 
         // GET: Coaches
         public ActionResult Index()
         {
-            var coaches = db.Coaches.Include(c => c.Active).Include(c => c.City).Include(c => c.Gender).Include(c => c.Title).Include(c => c.userLogin);
+            var coaches = db.Coaches.Include(c => c.Active).Include(c => c.City).Include(c => c.ExperienceLevel).Include(c => c.Gender).Include(c => c.Title).Include(c => c.userLogin).Include(c => c.University1);
             return View(coaches.ToList());
         }
 
@@ -43,9 +43,11 @@ namespace BaeCoach.Controllers
         {
             ViewBag.FK_ActiveID = new SelectList(db.Actives, "ActiveID", "ActiveDescription");
             ViewBag.FK_CityID = new SelectList(db.Cities, "Id", "Name");
+            ViewBag.CoachExperience = new SelectList(db.ExperienceLevels, "ExperienceID", "ExperienceDescription");
             ViewBag.FK_GenderID = new SelectList(db.Genders, "GenderID", "GenderDescription");
             ViewBag.FK_TitleID = new SelectList(db.Titles, "TitleID", "Titledescription");
             ViewBag.LoginID = new SelectList(db.userLogins, "UserLoginID", "Username");
+            ViewBag.University = new SelectList(db.Universities, "UniversityID", "UniversityName");
             return View();
         }
 
@@ -54,49 +56,52 @@ namespace BaeCoach.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CoachID,Name,Surname,Username,FK_TitleID,FK_GenderID,FK_ActiveID,FK_CityID,LoginID")] Coach coach, string UserPassword)
+        public ActionResult Create([Bind(Include = "CoachID,Name,Surname,Username,FK_TitleID,FK_GenderID,FK_ActiveID,FK_CityID,LoginID,CoachExperience,University,userLogin.UserPassword")] Coach coach, string UserPassword,string username)
         {
             userLogin ulogin = new userLogin();
             var hasedValue = ComputeSha256Hash(UserPassword);
+            string newHased = hasedValue.Substring(0, 49);
 
             if (ModelState.IsValid)
             {
                 userLogin ul = new userLogin();
-                ul.UserPassword = hasedValue;
-                ul.Username = coach.Username;
-                ul.LoginType = false;
+                ul.UserPassword = newHased;
+                ul.Username = username;
+                ul.LoginType = true;
 
-                db.userLogins.Add(ul);
+                coach.FK_ActiveID = 1;
                 db.Coaches.Add(coach);
+                db.userLogins.Add(ul);
                 db.SaveChanges();
                 return RedirectToAction("TopicSelect", "BaeCoach");
+            }
+            string ComputeSha256Hash(string rawData)
+            {
+                //Create a SHA256
+                using (SHA256 sha256Hash = SHA256.Create())
+                {
+                    //Compute hash - returns byte array
+                    byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+
+                    //Convert byte array to a string
+                    StringBuilder builder = new StringBuilder();
+                    for (int i = 0; i < bytes.Length; i++)
+                    {
+                        builder.Append(bytes[i].ToString("x2"));
+                    }
+                    return builder.ToString();
+                }
+
             }
 
             ViewBag.FK_ActiveID = new SelectList(db.Actives, "ActiveID", "ActiveDescription", coach.FK_ActiveID);
             ViewBag.FK_CityID = new SelectList(db.Cities, "Id", "Name", coach.FK_CityID);
+            ViewBag.CoachExperience = new SelectList(db.ExperienceLevels, "ExperienceID", "ExperienceDescription", coach.CoachExperience);
             ViewBag.FK_GenderID = new SelectList(db.Genders, "GenderID", "GenderDescription", coach.FK_GenderID);
             ViewBag.FK_TitleID = new SelectList(db.Titles, "TitleID", "Titledescription", coach.FK_TitleID);
             ViewBag.LoginID = new SelectList(db.userLogins, "UserLoginID", "Username", coach.LoginID);
+            ViewBag.University = new SelectList(db.Universities, "UniversityID", "UniversityName", coach.University);
             return View(coach);
-        }
-
-        string ComputeSha256Hash(string rawData)
-        {
-            //Create a SHA256
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                //Compute hash - returns byte array
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
-
-                //Convert byte array to a string
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
-            }
-
         }
 
         // GET: Coaches/Edit/5
@@ -113,9 +118,11 @@ namespace BaeCoach.Controllers
             }
             ViewBag.FK_ActiveID = new SelectList(db.Actives, "ActiveID", "ActiveDescription", coach.FK_ActiveID);
             ViewBag.FK_CityID = new SelectList(db.Cities, "Id", "Name", coach.FK_CityID);
+            ViewBag.CoachExperience = new SelectList(db.ExperienceLevels, "ExperienceID", "ExperienceDescription", coach.CoachExperience);
             ViewBag.FK_GenderID = new SelectList(db.Genders, "GenderID", "GenderDescription", coach.FK_GenderID);
             ViewBag.FK_TitleID = new SelectList(db.Titles, "TitleID", "Titledescription", coach.FK_TitleID);
             ViewBag.LoginID = new SelectList(db.userLogins, "UserLoginID", "Username", coach.LoginID);
+            ViewBag.University = new SelectList(db.Universities, "UniversityID", "UniversityName", coach.University);
             return View(coach);
         }
 
@@ -124,19 +131,22 @@ namespace BaeCoach.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CoachID,Name,Surname,Username,FK_TitleID,FK_GenderID,FK_ActiveID,FK_CityID,LoginID")] Coach coach)
+        public ActionResult Edit([Bind(Include = "CoachID,Name,Surname,Username,FK_TitleID,FK_GenderID,FK_ActiveID,FK_CityID,LoginID,CoachExperience,University")] Coach coach)
         {
             if (ModelState.IsValid)
             {
+
                 db.Entry(coach).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.FK_ActiveID = new SelectList(db.Actives, "ActiveID", "ActiveDescription", coach.FK_ActiveID);
             ViewBag.FK_CityID = new SelectList(db.Cities, "Id", "Name", coach.FK_CityID);
+            ViewBag.CoachExperience = new SelectList(db.ExperienceLevels, "ExperienceID", "ExperienceDescription", coach.CoachExperience);
             ViewBag.FK_GenderID = new SelectList(db.Genders, "GenderID", "GenderDescription", coach.FK_GenderID);
             ViewBag.FK_TitleID = new SelectList(db.Titles, "TitleID", "Titledescription", coach.FK_TitleID);
             ViewBag.LoginID = new SelectList(db.userLogins, "UserLoginID", "Username", coach.LoginID);
+            ViewBag.University = new SelectList(db.Universities, "UniversityID", "UniversityName", coach.University);
             return View(coach);
         }
 
@@ -161,9 +171,10 @@ namespace BaeCoach.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Coach coach = db.Coaches.Find(id);
-            db.Coaches.Remove(coach);
+            coach.FK_ActiveID = 2;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            Session.Abandon();
+            return RedirectToAction("DoLogin", "BaeCoach");
         }
 
         protected override void Dispose(bool disposing)

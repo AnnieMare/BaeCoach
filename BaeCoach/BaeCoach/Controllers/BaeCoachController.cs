@@ -18,9 +18,10 @@ namespace BaeCoach.Controllers
         public static List<Topic> topicSelect = new List<Topic>();
         //list to display selected topic
         public static List<Topic> topicSelected = new List<Topic>();
-    
-        public static string currentUser = "";
-        BaeCoachEntities1 db = new BaeCoachEntities1();//connection string
+        public static List<Post> prevPosts = new List<Post>();
+
+
+        BaeCoachEntities3 db = new BaeCoachEntities3();//connection string
         public static List<myUser> thisBae = new List<myUser>();
 
         //SQL connection
@@ -37,25 +38,50 @@ namespace BaeCoach.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult DoLogin(string Email, string Password)
+
+        public ActionResult DoLogin()
         {
+            return View();
+        }
+        public ActionResult LoginAction(string email, string password)
+        {
+            try
+                {
+                var hashedPassword = ComputeSha256Hash(password);
+                string newHased = hashedPassword.Substring(0, 49);
 
-            //user email en user password moet in die database gesit word. ALong with others
+                userLogin userLogin = db.userLogins.Where(z => z.Username == email && z.UserPassword == newHased).FirstOrDefault();
+                myUser user = db.myUsers.Where(c => c.Username == email).FirstOrDefault();
+                Coach coach = db.Coaches.Where(c => c.Username == email).FirstOrDefault();
 
-            var hashedPassword = ComputeSha256Hash(Password);
-            Models.userLogin user = db.userLogins.Where(zz => zz.Username == Username && zz.UserPassword == hashedPassword).FirstOrDefault();
+                Session["userID"] = userLogin.UserLoginID;
+                Session["type"] = userLogin.LoginType;
 
-            if (user != null)
-            { //user viewmodel in folder "ViewModelsCarla" want ek kon nie die ander een vind nie, maak net seker jy verander dit terug
-                UserVM userVME = new UserVM();
-                userVME.user = user; //weet nie hoekom hierdie n error gooi nie? logincal error?
-                userVME.RefreshGUID(db);
-                TempData["userVM"] = userVME;
-                return View("Login", "Login"); //need to adjust this accordingly
+                if (user != null)
+                {
+                    Session["myUsersID"] = user.UserID;
+                }
+                else
+                {
+                    Session["myUsersID"] = coach.CoachID;
+                }
+
+                if (userLogin != null)
+                {
+                    return RedirectToAction("TopicSelect", "BaeCoach");
+                }
+                else
+                {
+                    ViewBag.Message = "UserName or password is wrong";
+                    return View();
+                }
             }
-            return View(); //else- it must return with an error message
-        
+            catch(Exception e)
+            {
+                ViewBag.Message = e.Message;
+            }
+
+            return RedirectToAction("DoLogin");
         }
 
         public ActionResult BaeSignUpPage()
@@ -69,60 +95,6 @@ namespace BaeCoach.Controllers
             vm.RelationshipStatusList = db.RelationshipStatus.ToList();
             return View(vm);
         }
-
-        //public ActionResult BaeAdd(string Name, string Surname, string UserName, string Password, string Country, string Region, string City, string Title, string Gender, string RelationshipStatus)
-        //{
-            //BaeCoachEntities1 db = new BaeCoachEntities1();
-            ////BaeSignUpViewModel vm = new BaeSignUpViewModel();
-            //myUser user = new myUser();
-            //userLogin ulogin = new userLogin();
-            //Country country = new Country();
-            //Region region = new Region();
-            //City city = new City();
-            //Title title = new Title();
-            //Gender gender = new Gender();
-            //RelationshipStatu relationshipStatus = new RelationshipStatu();
-
-            user.Name = Name;
-            user.Surname = Surname;
-            user.Username = UserName;
-            ulogin.UserPassword = ComputeSha256Hash(ulogin.UserPassword);
-            country.Name = Country.ToString();
-            region.Name = Region.ToString();
-            city.Name = City.ToString();
-            title.Titledescription = Title;
-            gender.GenderDescription = Gender;
-            relationshipStatus.RelationshipStatusDescription = RelationshipStatus;
-
-            //user.UserID = user.UserID;
-            //user.Name = Name;
-            //user.Surname = Surname;
-            ////user.Email = Email;
-            //user.Username = UserName;
-            //ulogin.UserPassword = ComputeSha256Hash(Password);
-            //country.Name = Country;
-            //region.Name = Region;
-            //city.Name = City;
-            //title.Titledescription = Title;
-            //gender.GenderDescription = gender.GenderID.ToString();
-            //relationshipStatus.RelationshipStatusDescription = relationshipStatus.RelationshipStatusID.ToString();
-
-
-            //db.myUsers.Add(user);
-            //db.userLogins.Add(ulogin);
-            //db.Countries.Add(country);
-            //db.Regions.Add(region);
-            //db.Cities.Add(city);
-            //db.Titles.Add(title);
-            //db.Genders.Add(gender);
-            //db.RelationshipStatus.Add(relationshipStatus);
-
-            //db.SaveChanges();
-                       
-            //return RedirectToAction("TopicSelct", new { userID = user.UserID });
-
-
-        //}
 
         
         string ComputeSha256Hash(string rawData)
@@ -143,135 +115,49 @@ namespace BaeCoach.Controllers
             }
 
         }
-        public ActionResult CoachSignUpPage()
-        {
-            CoachSignUpViewModel vm = new CoachSignUpViewModel();
-            vm.CountryList = db.Countries.ToList();
-            vm.RegionList = db.Regions.ToList();
-            vm.CityList = db.Cities.ToList();
-            //vm.TitleList = db.Titles.ToList();
-            //vm.GenderList = db.Genders.ToList();
-            //vm.StatusList = db.RelationshipStatus.ToList();
-            vm.UniversityList = db.Universities.ToList();
-            return View(vm);
-        }
-
-        public ActionResult CoachAdd( string Name, string Surname, string UserName, string Email, List<Country> Country, List<Region> Region, List<City> City, string Title, string Gender, string RelationshipStatus, List<University> University, DateTime Graduated, string Study)
-        {
-            BaeCoachEntities1 db = new BaeCoachEntities1();
-            Coach coach = new Coach();
-            userLogin ulogin = new userLogin();
-            Country country = new Country();
-            Region region = new Region();
-            City city = new City();
-            Title title = new Title();
-            Gender gender = new Gender();
-            RelationshipStatu relationshipStatus = new RelationshipStatu();
-            University uni = new University();
-
-
-            coach.Name = Name;
-            coach.Surname = Surname;
-            coach.Username = UserName;
-            ulogin.UserPassword = ComputeSha256Hash(ulogin.UserPassword);
-            country.Name = Country.ToString();
-            region.Name = Region.ToString();
-            city.Name = City.ToString();
-            title.Titledescription = Title;
-            gender.GenderDescription = Gender;
-            relationshipStatus.RelationshipStatusDescription = RelationshipStatus;
-            uni.UniversityName = University.ToString();
-          
-
-
-            db.Coaches.Add(coach);
-            db.userLogins.Add(ulogin);
-            db.Countries.Add(country);
-            db.Regions.Add(region);
-            db.Cities.Add(city);
-            db.Titles.Add(title);
-            db.Genders.Add(gender);
-            db.RelationshipStatus.Add(relationshipStatus);
-
-            db.SaveChanges();
-
-            return RedirectToAction("TopicSelct");
-        }
+       
 
         public ActionResult TopicSelect()
         {
             //Get all topics from database and add to list to pass to the view
+            
             topicSelect = db.Topics.ToList();
 
             return View(topicSelect);
         }
         public ActionResult Home(string Selected)
         {
-            //If selected not null add selected topics to list
-            if (Selected != null)
+            try
             {
-                //add selected ids to array that was passed from the view
-                string[] userSelectedTopic = Selected.Split(',');
-
-                //loop to add all selected to new list to pass through to the homescreen view
-                for (int i = 0; i < userSelectedTopic.Count(); i++)
+                //If selected not null add selected topics to list
+                if (Selected != null)
                 {
-                    int topic = Convert.ToInt32(userSelectedTopic[i]);
-                    topicSelected.Add(db.Topics.Where(z => z.TopicID == topic).FirstOrDefault());
+                    //add selected ids to array that was passed from the view
+                    string[] userSelectedTopic = Selected.Split(',');
+
+                    //loop to add all selected to new list to pass through to the homescreen view
+                    for (int i = 0; i < userSelectedTopic.Count(); i++)
+                    {
+                        int topic = Convert.ToInt32(userSelectedTopic[i]);
+                        topicSelected.Add(db.Topics.Where(z => z.TopicID == topic).FirstOrDefault());
+                    }
+
+                    TempData["Selected"] = Selected;
+                    return View(topicSelected);
+                }
+                else
+                {
+                    return RedirectToAction("DoLogin", "BaeCoach");
                 }
             }
+            catch(Exception e)
+            {
 
-            return View(topicSelected);
+            }
+            return RedirectToAction("TopicSelect", "BaeCoach");
 
         }
-        public ActionResult UpdateProfile(int id)
-        {
-            //myUser updateBaeModel = new myUser();
-            //updateBaeModel.myBae = thisBae.Where(p => p. == id).FirstOrDefault();
-
-            //try
-            //{
-            //    myConnection.Open();
-            //    SqlCommand updateCommand = new SqlCommand("Select myUser.UserID, myUser.Name, myUser.Surname, myUser.UserName, myUser.FK_TitleID, myUser.FK_GenderID, myUser.FK_RelationshipStatusIdn, myUser.FK_ActiveID, myUser.FK_CityID, myUser.LoginID, myUser.Email FROM myUser", myConnection);
-            //    SqlDataReader baeReader = updateCommand.ExecuteReader();
-            //    while (baeReader.Read())
-            //    {
-            //        BaeSignUpViewModel bae = new BaeSignUpViewModel();
-            //        ViewBag.UserID = (int)baeReader["UserID"];
-            //        bae.Name = baeReader["Name"].ToString();
-            //        bae.Surname = baeReader["Surname"].ToString();
-            //        bae.UserName = baeReader["UserName"].ToString();
-            //        bae.Title = (int)baeReader["FK_TitleID"];
-            //        bae.Gender = (int)baeReader["FK_GenderID"];
-            //        bae.StatusID = (int)baeReader["FK_RelationshipStatusIdn"];
-            //        bae.ActiveID = (int)baeReader["FK_ActiveID"];
-            //        bae.CityID = (int)baeReader["FK_CityID"];
-            //        bae.LoginID = (int)baeReader["FK_LoginID"];
-            //        bae.Email = baeReader["Email"].ToString();
-            //        thisBae.Add(bae);
-
-            //        ViewBag.UserID = bae.UserID;
-            //        ViewBag.Name = bae.Name;
-            //        ViewBag.Surname = bae.Surname;
-            //        ViewBag.Title = bae.Title;
-            //        ViewBag.Gender = bae.Gender;
-            //        ViewBag.Status = bae.StatusID;
-            //        ViewBag.ActiveID = bae.ActiveID;
-            //        ViewBag.CityID = bae.CityID;
-            //        ViewBag.LoginID = bae.LoginID;
-            //        ViewBag.Email = bae.Email;
-            //    }
-            //}
-            //catch (Exception error)
-            //{
-            //    ViewBag.Status = error.Message;
-            //}
-            //finally
-            //{
-            //    myConnection.Close();
-            //}
-            return View();
-        }
+      
 
         public ActionResult DoBaeUpdate(int userID, string Name, string Surname, string UserName, string Email, List<City> City, string Title, string Gender, string RelationshipStatus, int activeID, int loginID)
         {
@@ -293,18 +179,30 @@ namespace BaeCoach.Controllers
         }
         public ActionResult CoachUpdateProfile()
         {
+           
             return View();
         }
 
         public ActionResult UserFeed()
         {
+            int TopicID = Convert.ToInt32(Session["topicId"]);
+            Session["TopicName"] = db.Topics.Where(c => c.TopicID == TopicID).Select(t => t.TopicName).FirstOrDefault();
 
-            return View();
+           
+
+            List <Post> prevPosts = db.Posts.Where(x => x.Topic == TopicID).ToList();
+            
+            return View(prevPosts) ;
         }
 
         public ActionResult CoachFeed()
         {
-            return View();
+
+            int TopicID = Convert.ToInt32(Session["topicId"]);
+            Session["TopicName"] = db.Topics.Where(c => c.TopicID == TopicID).Select(t => t.TopicName).FirstOrDefault();
+            prevPosts = db.Posts.Where(x => x.Topic == TopicID).ToList();
+            
+            return View(prevPosts);
         }
 
         public ActionResult CoachReply()
@@ -316,18 +214,53 @@ namespace BaeCoach.Controllers
             return View();
         }
 
-        public ActionResult Feed()
+
+        [HttpPost]
+        public ActionResult Feed(string topicID, string ImageLink )
         {
-            //redirect user to the right view
-            if (currentUser == "Bae")
+
+            Session["topicId"] = topicID;
+            Session["ImageLink"] = ImageLink;
+          
+            if (Convert.ToBoolean(Session["type"]) == false)
             {
-                return RedirectToAction("UserFeed", "BaeCoach");
+               
+                return RedirectToAction("UserFeed", "BaeCoach", new {topicID = topicID});
+            }
+            else if(Convert.ToBoolean(Session["type"]) == true)
+            {
+                return RedirectToAction("CoachFeed", "BaeCoach", new { topicID = topicID });
             }
             else
             {
-                return RedirectToAction("CoachFeed", "BaeCoach");
+                return RedirectToAction("DoLogin", "BaeCoach");
             }
         }
 
+        public ActionResult Logout()
+        {
+            Session.Abandon();//clear sessions
+            return RedirectToAction("DoLogin");
+        }
+
+        public ActionResult checkEdit(string UserID)
+        {
+            
+            if (Convert.ToBoolean(Session["type"]) == false)
+            {
+
+                return RedirectToAction("Edit", "myUsers", new { id = UserID });
+            }
+            else if (Convert.ToBoolean(Session["type"]) == true)
+            {
+                return RedirectToAction("Edit", "Coaches", new { id = UserID });
+            }
+            else
+            {
+                return RedirectToAction("DoLogin", "BaeCoach");
+            }
+
+            
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿
 @{
     Layout = null;
+
 }
 
 <!DOCTYPE html>
@@ -19,26 +20,53 @@
 </head>
 <body>
     <div>
-
+        <div id="popupdiv" style="border: 1px solid red; display: none;">
+            @ViewBag.Message
+        </div>
         <div class="card-body" id="LoginBox">
             <div class="container" id="box1">
-                @using (Html.BeginForm("DoLogin", "BaeCoach", FormMethod.Post))
+                @using (Html.BeginForm("LoginAction", "BaeCoach", FormMethod.Post))
                 {
                     <h2>Please sign into your BaeCoach Account</h2>
                     <label class="label label-default" style="float:left; font-size:large">Email:</label>
-                    <input type="email" class="form-control" required />
+                    <input type="email" class="form-control" placeholder="Example@gmail.com" name="email" required />
                     <br />
                     <label class="label label-default" style="float:left; font-size:large">Password:</label>
-                    <input type="password" class="form-control" required />
+                    <input type="password" class="form-control" placeholder="********" name="password" required />
                     <br />
                     <div id="buttonRight">
                         <input type="submit" value="Login" class="btn" id="btn" />
+
                         @*//This must take them to the signup options page DoLogin*@
-                        <input type="submit" value="Sign Up" class="btn" id="btn" />
+
+
                     </div>
                 }
+
+                <div id="buttonLeft">
+                    <a href="@Url.Action("Login", "BaeCoach")" style="color:white">Sign Up</a>
+                </div>
+
             </div>
         </div>
     </div>
 </body>
 </html>
+
+
+<script type="text/jscript">
+    $(document).ready(function () {
+        var x = $("#uname").val();
+        var y = $("#pswd").val();
+        $("#submit").on("click", function () {
+            if (error condition ) {
+            alert('username and password is null');
+        }
+                else {
+            var div = $("#popupdiv").text();
+            alert(div)
+        }
+
+    });
+        });
+</script>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fe79a1b1f42c45cda36fabe46efb2895" Name="Diagram1">
+        <EntityTypeShape EntityType="BaeCoachModel.Active" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaeCoachModel.City" Width="1.5" PointX="3.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaeCoachModel.Coach" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaeCoachModel.Country" Width="1.5" PointX="1.5" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaeCoachModel.ExperienceLevel" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaeCoachModel.Gender" Width="1.5" PointX="3.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaeCoachModel.myUser" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaeCoachModel.Post" Width="1.5" PointX="8.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaeCoachModel.Region" Width="1.5" PointX="1.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaeCoachModel.RelationshipStatu" Width="1.5" PointX="3.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaeCoachModel.Response" Width="1.5" PointX="10.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaeCoachModel.sysdiagram" Width="1.5" PointX="2.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaeCoachModel.Title" Width="1.5" PointX="3.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaeCoachModel.Topic" Width="1.5" PointX="6" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaeCoachModel.University" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaeCoachModel.userLogin" Width="1.5" PointX="3.75" PointY="21.625" IsExpanded="true" />
+        <AssociationConnector Association="BaeCoachModel.FK__Coach__FK_Active__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__myUser__FK_Activ__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__Coach__FK_CityID__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__myUser__FK_CityI__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK_Cities_Regions" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__Coach__CoachExpe__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__Coach__FK_Gender__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__Coach__FK_TitleI__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__Coach__LoginID__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__Coach__Universit__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__Response__FK_Coa__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK_Regions_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__myUser__FK_Gende__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__myUser__FK_Relat__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__myUser__FK_Title__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__myUser__LoginID__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__Post__FK_UserID__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__Post__Topic__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__Response__FK_Pos__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__Response__FK_Res__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="BaeCoachModel.FK__Response__Topic__3E52440B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

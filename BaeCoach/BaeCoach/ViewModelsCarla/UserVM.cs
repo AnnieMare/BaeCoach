@@ -12,7 +12,7 @@ namespace BaeCoach.ViewModelsCarla
        
         public userLogin user;
 
-        public bool IsLoggedIn(BaeCoachEntities1 db)
+        public bool IsLoggedIn(BaeCoachEntities3 db)
         {
             db.Configuration.ProxyCreationEnabled = false;
             var guids = db.myUsers.Where(us => us.LoginID == user.UserLoginID).Count();
@@ -21,7 +21,7 @@ namespace BaeCoach.ViewModelsCarla
             return false;
         }
     
-        public bool IsLoggedIn(BaeCoachEntities1 db, int loginID)
+        public bool IsLoggedIn(BaeCoachEntities3 db, int loginID)
         {
             db.Configuration.ProxyCreationEnabled = false;
             //user = db.myUsers.Where(us => us.LoginID == user.L ).FirstOrDefault();

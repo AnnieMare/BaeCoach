@@ -14,7 +14,7 @@ namespace BaeCoach.Controllers
 {
     public class myUsersController : Controller
     {
-        private BaeCoachEntities1 db = new BaeCoachEntities1();
+        private BaeCoachEntities3 db = new BaeCoachEntities3();
 
         // GET: myUsers
         public ActionResult Index()
@@ -59,11 +59,11 @@ namespace BaeCoach.Controllers
         {
             userLogin ulogin = new userLogin();
             var hasedValue = ComputeSha256Hash(UserPassword);
-
+            string newHased = hasedValue.Substring(0, 49);
             if (ModelState.IsValid)
             {
                 userLogin ul = new userLogin();
-                ul.UserPassword = hasedValue;
+                ul.UserPassword = newHased;
                 ul.Username = myUser.Username;
                 ul.LoginType = false;
                
@@ -165,9 +165,10 @@ namespace BaeCoach.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             myUser myUser = db.myUsers.Find(id);
-            db.myUsers.Remove(myUser);
+            myUser.FK_ActiveID = 2;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            Session.Abandon();
+            return RedirectToAction("DoLogin","BaeCoach");
         }
 
         protected override void Dispose(bool disposing)

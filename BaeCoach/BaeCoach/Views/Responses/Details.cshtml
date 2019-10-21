@@ -1,0 +1,73 @@
+﻿@model BaeCoach.Models.Response
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/ApplicationStyle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Response</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RespronsText)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RespronsText)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Coach.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Coach.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Post.PostText)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Post.PostText)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Response2.RespronsText)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Response2.RespronsText)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Topic1.TopicName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Topic1.TopicName)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ResponseID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

@@ -9,19 +9,19 @@ namespace BaeCoach.ViewModels
 {
     public class CoachFeed
     {
-        BaeCoachEntities1 db = new BaeCoachEntities1();
+        BaeCoachEntities3 db = new BaeCoachEntities3();
         public Coach currentCoach { get; set; }
         public List<Post> listPosts { get; set; }
         public Response coachResponse { get; set; }
         public Topic currentTopic { get; set; }
 
-        public CoachFeed populateCoachFeed(int PostID, Coach currentCoach)
-        {
-            CoachFeed cf = new CoachFeed();
-            listPosts = db.Posts.Where(o => o.TopicName == currentTopic.TopicName).ToList();
-            //string PostText = listPosts.Select(x => x.PostText).FirstOrDefault();
-            return cf;
+        //public CoachFeed populateCoachFeed(int PostID)
+        //{
+        //    //CoachFeed cf = new CoachFeed();
+        //    //listPosts = db.Posts.Where(o => o.Topic == currentTopic.).ToList();
+        //    ////string PostText = listPosts.Select(x => x.PostText).FirstOrDefault();
+        //    //return cf;
 
-        }
+        //}
     }
 }

@@ -1,0 +1,161 @@
+﻿@model BaeCoach.Models.myUser
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/ApplicationStyle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <title>Create</title>
+</head>
+<body>
+
+    <center>
+        <div id="element">
+            <div class="card-body1" style="width:60%; height:100%">
+
+                @using (Html.BeginForm("Create", "myUsers", FormMethod.Post))
+                {
+
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="form-horizontal">
+                        <h1>Sign Up</h1>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <center>
+                            <div class="form-group">
+                                <div class="pull-left">
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control",required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </center>
+
+
+
+                        <center>
+                            <div class="form-group">
+                                <div class="pull-left">
+                                    @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-2" })
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control",required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </center>
+
+                        <center>
+                            <div class="form-group">
+                                <div class="pull-left">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Username,"Email", new { htmlAttributes = new { @class = "form-control", required = "required", type = "Email" } })
+                                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </center>
+                        <center>
+                            <div class="form-group">
+                                <div class="pull-left">
+                                    @Html.LabelFor(model => model.userLogin.UserPassword, "Password", htmlAttributes: new { @class = "control-label col-md-2" })
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="password" name="UserPassword" class="control-label col-md-2" required />
+                                </div>
+                            </div>
+                        </center>
+
+                        <center>
+                            <div class="form-group">
+                                <div class="pull-left">
+                                    @Html.LabelFor(model => model.FK_TitleID, "Title", htmlAttributes: new { @class = "control-label col-md-2" })
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.DropDownList("FK_TitleID", null, htmlAttributes: new { @class = "form-control",required = "required" })
+                                    @Html.ValidationMessageFor(model => model.FK_TitleID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </center>
+
+                        <center>
+                            <div class="form-group">
+                                <div class="pull-left">
+                                    @Html.LabelFor(model => model.FK_GenderID, "Gender", htmlAttributes: new { @class = "control-label col-md-2" })
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.DropDownList("FK_GenderID", null, htmlAttributes: new { @class = "form-control", required = "required" })
+                                    @Html.ValidationMessageFor(model => model.FK_GenderID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </center>
+
+                        <center>
+                            <div class="form-group">
+                                <div class="pull-left">
+                                    @Html.LabelFor(model => model.FK_RelationshipStatusIdn, "RelationshipStatus", htmlAttributes: new { @class = "control-label col-md-2" })
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.DropDownList("FK_RelationshipStatusIdn", null, htmlAttributes: new { @class = "form-control", required = "required" })
+                                    @Html.ValidationMessageFor(model => model.FK_RelationshipStatusIdn, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </center>
+                        <center>
+                            <div class="form-group">
+                                <div class="pull-left">
+                                    @Html.LabelFor(model => model.FK_CityID, "City", htmlAttributes: new { @class = "control-label col-md-2",required = "required" })
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.DropDownList("FK_CityID", null, htmlAttributes: new { @class = "form-control", required = "required" })
+                                    @Html.ValidationMessageFor(model => model.FK_CityID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </center>
+                        <center>
+                            <div class="form-group">
+                                @using (Html.BeginForm("TopicSelect", "BaeCoach"))
+                                {
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Sign Up" class="btn btn-light" onclick="myfunction()" />
+                                        
+                                    </div>
+                                }
+                            </div>
+                        </center>
+
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </center>
+
+
+</body>
+</html>
+<script>
+    function myfunction() {
+        alert('Welcome new Bae! You have been successfully registered.');
+        Session["type"]= false;
+    }
+</script>

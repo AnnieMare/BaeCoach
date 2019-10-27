@@ -1,0 +1,121 @@
+﻿@model List<BaeCoach.Models.Topic>
+@{
+    Layout = null;
+      if (Session["userID"] == null)
+    {
+         Response.Redirect("~/BaeCoach/DoLogIn");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Charl'sStyles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+    <title>TopicSelect</title>
+
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <!-- bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="@Url.Action("Home", "BaeCoach")">BaeCoach</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav w-100">
+
+                    <li class="nav-item dropdown ml-auto">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                        <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink" style="right:0">
+                            @using (Html.BeginForm("checkEdit", "BaeCoach", FormMethod.Get))
+                            {
+                                <input id="Submit1" type="submit" value="Update Profile" style="border: none; background-color:transparent;" />
+                                <input id="Text1" type="text" value="@Session["myUsersID"]" name="UserID" hidden />
+                            }
+                            @using (Html.BeginForm("Logout", "BaeCoach"))
+                            {
+                                <input id="Submit1" type="submit" value="Log out" style="border: none; background-color:transparent;" />
+                            }
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <br /><br />
+    <center>
+        <div id="block">
+            <h3>What are you here for today?</h3>
+            <p>
+                Select all topics you are intrested in:
+            </p>
+
+            <center>
+
+                <div id="content">
+
+
+                    @foreach (var topic in Model)
+                    {
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="checkbox" data-topic="@topic.TopicID">
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" placeholder="@topic.TopicName" readonly>
+                        </div>
+                    }
+                    @using (Html.BeginForm("Home", "BaeCoach", FormMethod.Post))
+                    {
+                        <input hidden id="Selected" name="Selected" />
+                        <input type="submit" value="Continue" class="btn btn-light" id="submit" onclick="checkSelect()" />
+
+                    }
+                </div>
+            </center>
+        </div>
+    </center>
+</body>
+
+<script>
+    var selectedList = [];
+
+    $(":checkbox").click(function () {
+        //var text = $(this).parent().parent().siblings(".form-control")[0].placeholder;
+
+        var selVal = $(this).data("topic");
+        if ($(this).is(':checked')) {
+            //add to array
+            selectedList.push(selVal);
+        }
+        else {
+            //remove from the array if it is there
+            selectedList.splice(selectedList.indexOf(selVal), 1);
+        }
+
+        // code to transform array into string of values
+        $("#Selected").val(selectedList.toString());
+        console.log(selectedList.toString());
+    });
+    function checkSelect() {
+        if (selectedList == "") {
+            alert('Please Select a topic before you continue');
+            return;
+        }
+    }
+</script>
+</html>
+
+

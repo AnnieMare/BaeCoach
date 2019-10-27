@@ -1,0 +1,29 @@
+﻿body {
+    margin: 0;
+    height: 700px;
+    width: 1500px;
+    z-index: 1;
+}
+#background {
+    clip-path: polygon(50% 0%, 100% 0, 100% 25%, 14% 100%, 0 100%, 0 0);
+    z-index: -1;
+    background-color: rgb(109, 115, 185);
+    margin:0;
+    height: 100%;
+    width:100%;
+}
+.text {
+    margin: 50px;
+    z-index: 1;
+    height: 100vh;
+    font-family: Georgia;
+    height: 500px;
+    width: 700px;
+    align-content: center;
+    position: absolute;
+    left :250px;
+    top:200px
+}
+h1{
+    color:white;
+}

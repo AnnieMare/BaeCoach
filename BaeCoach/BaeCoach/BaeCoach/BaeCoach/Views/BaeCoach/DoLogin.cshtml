@@ -1,0 +1,70 @@
+﻿
+@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/StyleSheet1.css" rel="stylesheet" />
+    <link href="~/Charl'sStyles.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title>DoLogin</title>
+</head>
+<body>
+    <div>
+        <div id="popupdiv" style="border: 1px solid red; display: none;">
+            @ViewBag.Message
+        </div>
+        <div class="card-body" id="LoginBox">
+            <div class="container" id="box1">
+                @using (Html.BeginForm("LoginAction", "BaeCoach", FormMethod.Post))
+                {
+                    <h2>Please sign into your BaeCoach Account</h2>
+                    <label class="label label-default" style="float:left; font-size:large">Email:</label>
+                    <input type="email" class="form-control" placeholder="Example@gmail.com" name="email" required />
+                    <br />
+                    <label class="label label-default" style="float:left; font-size:large">Password:</label>
+                    <input type="password" class="form-control" placeholder="********" name="password" required />
+                    <br />
+                    <div id="buttonRight">
+                        <input type="submit" value="Login" class="btn btn-light" id="btn" />
+
+                        @*//This must take them to the signup options page DoLogin*@
+
+
+                    </div>
+                }
+
+             
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script type="text/jscript">
+    $(document).ready(function () {
+        var x = $("#uname").val();
+        var y = $("#pswd").val();
+        $("#submit").on("click", function () {
+            if (error condition ) {
+            alert('username and password is null');
+        }
+                else {
+            var div = $("#popupdiv").text();
+            alert(div)
+        }
+
+    });
+        });
+</script>
